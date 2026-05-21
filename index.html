@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Cybersecurity & Development</title>
+    <style>
+        /* ========== VARIABLES Y RESET ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #0a0e27;
+            --dark-bg: #0d1117;
+            --card-bg: #161b22;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-red: #ff4d4d;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1f3a 100%);
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 136, 0.03) 2px, rgba(0, 255, 136, 0.03) 4px);
+            animation: scan 8s linear infinite;
+        }
+
+        .profile-image {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .profile-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.7);
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50px); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== NAVEGACIÓN ========== */
+        nav {
+            background: var(--card-bg);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== CONTENEDOR GENERAL ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        /* ========== SOBRE MÍ ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .about-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* ========== HABILIDADES ========== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .skill-item {
+            background: var(--secondary-color);
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateX(5px);
+        }
+
+        .skill-item::before {
+            content: '▸';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* ========== PROYECTOS ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--secondary-color), #1a1f3a);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-header h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-body p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        /* Tags dentro de las project cards */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            background: rgba(0, 255, 136, 0.08);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            border: 1px solid rgba(0, 255, 136, 0.25);
+            font-family: 'Courier New', monospace;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #00cc6f;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Badge de estado del proyecto */
+        .project-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== EXPERIENCIA TIMELINE ========== */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--dark-bg);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .timeline-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        /* ========== EDUCACIÓN ========== */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .education-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .education-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .education-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ========== CONTACTO ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--secondary-color);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-item::before {
+                left: -28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header>
+        <!--<div class="profile-image">
+            <img src="mgl-pro.jpeg" alt="Miguel Reguero">
+        </div>-->
+        <h1 id="nombre-completo">Miguel Reguero</h1>
+        <p class="subtitle">Software Developer & Cybersecurity Enthusiast</p>
+    </header>
+
+    <!-- ========== NAVEGACIÓN ========== -->
+    <nav>
+        <ul>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#experience">Experiencia</a></li>
+            <li><a href="#education">Educación</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== SOBRE MÍ ========== -->
+    <div class="container">
+        <section id="about">
+            <h2>Sobre mí</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🇪🇸 Español</h3>
+                    <p>Profesional de ciberseguridad con perfil híbrido Red/Blue Team, finalizando un Máster en Ciberseguridad. Mi enfoque cubre el ciclo completo de la seguridad ofensiva y defensiva: desde la simulación de ataques y análisis de amenazas hasta la respuesta a incidentes, forense digital y gestión del riesgo.</p>
+                    <p>He aplicado estos conocimientos en entornos de laboratorio reales — incluyendo el despliegue y bastionado de infraestructura de red con NGFW Sophos XG y el desarrollo de un HoneyPot propio — con el objetivo de construir soluciones de seguridad auditables y reproducibles.</p>
+                    <p>Actualmente profundizo en análisis de malware, inteligencia de amenazas (OSINT/CTI), forense de memoria y normativa (ISO 27001, ENS). Busco un entorno donde pueda aportar desde el primer día tanto en operaciones de seguridad como en proyectos técnicos de mayor alcance.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🇬🇧 English</h3>
+                    <p>Cybersecurity professional with a hybrid Red/Blue Team profile, currently completing a Master's degree in Cybersecurity. My focus spans the full security lifecycle: attack simulation and threat analysis through to incident response, digital forensics, and risk management.</p>
+                    <p>I apply these skills in real lab environments — including the design and hardening of network infrastructure with Sophos XG NGFW and the development of a custom HoneyPot — building security solutions that are auditable and reproducible.</p>
+                    <p>Currently deepening expertise in malware analysis, threat intelligence (OSINT/CTI), memory forensics, and compliance frameworks (ISO 27001, ENS). Looking to contribute from day one in both security operations and broader technical projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== HABILIDADES ========== -->
+        <section id="skills">
+            <h2>Habilidades</h2>
+            <div class="skills-container">
+
+                <!-- Offensive Security -->
+                <div class="skill-category">
+                    <h3>⚔️ Offensive Security</h3>
+                    <div class="skill-item">Nmap (escaneo, enumeración, fingerprinting)</div>
+                    <div class="skill-item">Metasploit Framework</div>
+                    <div class="skill-item">Burp Suite</div>
+                    <div class="skill-item">Web Hacking · OWASP Top 10 (2025)</div>
+                    <div class="skill-item">Hydra · Gobuster · SQLMap</div>
+                    <div class="skill-item">John the Ripper</div>
+                    <div class="skill-item">Reconocimiento y enumeración</div>
+                    <div class="skill-item">Privilege Escalation (Linux & Windows)</div>
+                    <div class="skill-item">Active Directory attacks (básico)</div>
+                </div>
+
+                <!-- Defensive Security & SOC -->
+                <div class="skill-category">
+                    <h3>🛡️ Defensive Security & SOC Operations</h3>
+                    <div class="skill-item">Wireshark · Análisis de tráfico de red</div>
+                    <div class="skill-item">SOC Fundamentals · Alert triage</div>
+                    <div class="skill-item">Incident Response</div>
+                    <div class="skill-item">Threat Hunting (básico)</div>
+                    <div class="skill-item">Firewalls · IDS/IPS · Vulnerability Management</div>
+                    <div class="skill-item">MITRE ATT&CK Framework</div>
+                    <div class="skill-item">Cyber Kill Chain</div>
+                </div>
+
+                <!-- SIEM & Monitoring -->
+                <div class="skill-category">
+                    <h3>📊 SIEM & Monitoring</h3>
+                    <div class="skill-item">Elastic SIEM (ELK Stack)</div>
+                    <div class="skill-item">Splunk</div>
+                    <div class="skill-item">QRadar</div>
+                    <div class="skill-item">Log analysis · Dashboard creation</div>
+                </div>
+
+                <!-- Threat Intelligence & OSINT -->
+                <div class="skill-category">
+                    <h3>🔍 Threat Intelligence & OSINT</h3>
+                    <div class="skill-item">Maltego</div>
+                    <div class="skill-item">Shodan · OSINT Framework</div>
+                    <div class="skill-item">VirusTotal · AbuseIPDB</div>
+                    <div class="skill-item">MITRE ATT&CK (CTI)</div>
+                    <div class="skill-item">Passive reconnaissance</div>
+                </div>
+
+                <!-- Malware Analysis & Digital Forensics -->
+                <div class="skill-category">
+                    <h3>🧬 Malware Analysis & Digital Forensics</h3>
+                    <div class="skill-item">Ghidra · IDA Free</div>
+                    <div class="skill-item">Static & Dynamic analysis</div>
+                    <div class="skill-item">Sandbox analysis</div>
+                    <div class="skill-item">Autopsy · Memory forensics</div>
+                    <div class="skill-item">Volatility</div>
+                    <div class="skill-item">CyberChef · CAPA · REMnux · FlareVM</div>
+                </div>
+
+                <!-- GRC & Compliance -->
+                <div class="skill-category">
+                    <h3>📋 GRC & Compliance</h3>
+                    <div class="skill-item">ISO/IEC 27001</div>
+                    <div class="skill-item">Esquema Nacional de Seguridad (ENS)</div>
+                    <div class="skill-item">RGPD / GDPR</div>
+                    <div class="skill-item">Análisis de riesgos · MAGERIT</div>
+                </div>
+
+                <!-- Technical Fundamentals -->
+                <div class="skill-category">
+                    <h3>🔧 Technical Fundamentals</h3>
+                    <div class="skill-item">Linux (administración y scripting)</div>
+                    <div class="skill-item">Networking: OSI · TCP/IP · DNS · HTTP/S · VPN</div>
+                    <div class="skill-item">Active Directory & Windows environments</div>
+                    <div class="skill-item">Virtualización: Hyper-V · Proxmox</div>
+                    <div class="skill-item">Cryptography: simétrica · asimétrica · PKI · hashing</div>
+                    <div class="skill-item">Network segmentation & VLANs</div>
+                    <div class="skill-item">Bash scripting</div>
+                </div>
+
+                <!-- Development & Scripting -->
+                <div class="skill-category">
+                    <h3>💻 Development & Scripting</h3>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">Bash</div>
+                    <div class="skill-item">Automatización de tareas de seguridad</div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-category">
+                    <h3>🎯 Soft Skills</h3>
+                    <div class="skill-item">Pensamiento analítico y resolución de problemas</div>
+                    <div class="skill-item">Comunicación técnica clara</div>
+                    <div class="skill-item">Cybersecurity Awareness</div>
+                    <div class="skill-item">Aprendizaje autónomo y continuo</div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="skill-category">
+                    <h3>🌍 Idiomas</h3>
+                    <div class="skill-item">Español (Nativo)</div>
+                    <div class="skill-item" id="idioma-ingles">Inglés — B2</div>
+                    <div class="skill-item" id="otros-idiomas">Francés — B2</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== PROYECTOS ========== -->
+        <section id="projects">
+            <h2>Proyectos</h2>
+            <div class="projects-grid">
+
+                <!-- Proyecto: Sophos NGFW Lab -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🔐 NGFW Sophos — Arquitectura de Red Segura</h3>
+                        <span class="project-badge">🔵 Lab Project</span>
+                    </div>
+                    <div class="project-body">
+                        <p>
+                            Diseño y despliegue de un Firewall de Nueva Generación con <strong style="color: var(--primary-color);">Sophos XG</strong> sobre Hyper-V, emulando una infraestructura corporativa real. Incluye segmentación multizona (LAN, Servidores, Administración, Hipervisores, WiFi), política de <em>Default Deny</em>, bastionado del plano de gestión, inspección SSL/TLS, Security Heartbeat y simulación de movimiento lateral para validar las políticas.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Sophos XG</span>
+                            <span class="project-tag">Hyper-V</span>
+                            <span class="project-tag">Network Segmentation</span>
+                            <span class="project-tag">Default Deny</span>
+                            <span class="project-tag">VLANs</span>
+                            <span class="project-tag">SSL Inspection</span>
+                            <span class="project-tag">IPS</span>
+                            <span class="project-tag">VPN SSL</span>
+                            <span class="project-tag">Defense in Depth</span>
+                            <span class="project-tag">Least Privilege</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Miguel-R13/Sophos-NGFW-Lab" target="_blank" class="btn">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto: HoneyPot -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🍯 HoneyPot — Detección y Análisis de Amenazas</h3>
+                        <span class="project-badge">🟡 En desarrollo</span>
+                    </div>
+                    <div class="project-body">
+                        <p>
+                            Desarrollo de un <strong style="color: var(--primary-color);">HoneyPot</strong> propio orientado a la captura y análisis de actividad maliciosa real. El objetivo es estudiar vectores de ataque activos, TTPs de atacantes y generar inteligencia de amenazas accionable a partir del tráfico capturado en el entorno de laboratorio.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">HoneyPot</span>
+                            <span class="project-tag">Threat Intelligence</span>
+                            <span class="project-tag">TTPs Analysis</span>
+                            <span class="project-tag">Network Monitoring</span>
+                            <span class="project-tag">Log Analysis</span>
+                            <span class="project-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <span style="color: var(--text-secondary); font-size: 0.9rem; align-self: center;">🔧 Repositorio próximamente</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== EXPERIENCIA ========== -->
+        <section id="experience">
+            <h2>Experiencia</h2>
+            <div class="timeline">
+                <!-- Experiencia 1: Uniendo Nodos -->
+                <div class="timeline-item">
+                    <h3>Junior Solution Engineer | Smartsheet Consultant</h3>
+                    <p class="timeline-date">Uniendo Nodos · Jornada completa</p>
+                    <p class="timeline-date">📅 Septiembre 2024 - Junio 2025 · 10 meses</p>
+                    <p class="timeline-date">📍 Madrid, Comunidad de Madrid, España</p>
+                    <p>Desarrollo de soluciones empresariales con Smartsheet, optimización de procesos y automatización de workflows. Diseño de dashboards, reportes y métricas para la toma de decisiones. Acompañamiento al cliente y traducción de necesidades de negocio en soluciones técnicas.</p>
+                    <div class="timeline-skills">
+                        <span class="tag">Smartsheet</span>
+                        <span class="tag">Análisis de procesos</span>
+                        <span class="tag">Automatización</span>
+                        <span class="tag">Dashboards</span>
+                        <span class="tag">Scrum/Kanban</span>
+                        <span class="tag">Consultoría</span>
+                    </div>
+                </div>
+
+                <!-- Experiencia 2: DO & CO AG -->
+                <div class="timeline-item">
+                    <h3>Co Manager</h3>
+                    <p class="timeline-date">DO & CO AG · Jornada completa</p>
+                    <p class="timeline-date">📅 Marzo 2021 - Agosto 2023 · 2 años 6 meses</p>
+                    <p class="timeline-date">📍 Madrid / Viena / París / Qatar / Silverstone / Monza... · Presencial</p>
+                    <p>Gestión de equipos en eventos internacionales de alto nivel: F1 (Silverstone, Monza, Viena, Arabia Saudí, Mónaco), Mundial Qatar 2022, Eurocopa 2021, ATP Madrid & Viena, Finales UEFA Champions League París & Estambul. Learning and Development Manager y Coordinador de Reclutamiento con enfoque en team-building y capacidad de aprendizaje rápido.</p>
+                    <div class="timeline-skills">
+                        <span class="tag">Coordinación de equipos</span>
+                        <span class="tag">Gestión de eventos</span>
+                        <span class="tag">Lenguas extranjeras</span>
+                        <span class="tag">Evaluación del rendimiento</span>
+                        <span class="tag">Liderazgo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EDUCACIÓN Y CERTIFICACIONES ========== -->
+        <section id="education">
+            <h2>Roadmap / Formación</h2>
+            <div class="education-grid">
+                <!-- Cyber Security Foundations -->
+                <div class="education-card">
+                    <h3>🎓 Cyber Security Foundations</h3>
+                    <p>Computer Science Basics</p>
+                    <p>Pre-Security</p>
+                    <p>Cyber Security 101</p>
+                </div>
+
+                <!-- Security Analyst Path -->
+                <div class="education-card">
+                    <h3>🔍 Security Analyst Path</h3>
+                    <p>Security Analyst Level 1 (SAL1)</p>
+                    <p>SOC Level 1</p>
+                    <p>SOC Level 2</p>
+                    <p>Advanced Endpoint Investigations</p>
+                </div>
+
+                <!-- Penetration Tester Path -->
+                <div class="education-card">
+                    <h3>🎯 Penetration Tester Path</h3>
+                    <p>Jr Penetration Tester (PT1)</p>
+                    <p>Web Fundamentals</p>
+                    <p>Web Application Pentesting</p>
+                    <p>Web Application Red Teaming</p>
+                    <p>Red Teaming</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACTO ========== -->
+        <section id="contact">
+            <h2>Contacto</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:miguelrgr.cyber@gmail.com" id="contact-email">miguelrgr.cyber@gmail.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/miguel-reguero/" target="_blank" id="contact-linkedin">https://www.linkedin.com/in/miguel-reguero/</a>
+                </div>
+
+               <!-- <div class="contact-card">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <a href="#" target="_blank" id="contact-github">github.com/tu-usuario</a>
+                </div> -->
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <p>&copy; 2026 <span id="footer-nombre">Miguel Reguero</span> | Software Developer & Cybersecurity Enthusiast</p>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Smooth scroll para la navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animación de aparición al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animación a tarjetas y elementos
+        document.querySelectorAll('.project-card, .skill-category, .timeline-item, .education-card, .contact-card, .about-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Efecto de typing en el header (opcional)
+        const subtitle = document.querySelector('.subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Iniciar efecto de typing después de 500ms
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
