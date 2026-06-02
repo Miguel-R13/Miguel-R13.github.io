@@ -535,17 +535,80 @@
                 left: -28px;
             }
         }
-    </style>
+    
+#network-canvas{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+z-index:-1;
+pointer-events:none;
+}
+
+.hero-terminal{
+width:min(680px,90vw);
+background:rgba(11,15,20,.92);
+border:1px solid rgba(0,255,136,.15);
+border-radius:14px;
+overflow:hidden;
+backdrop-filter:blur(8px);
+box-shadow:0 0 40px rgba(0,255,136,.08);
+font-family:'JetBrains Mono', monospace;
+margin:auto;
+}
+
+.terminal-bar{
+height:42px;
+background:#161b22;
+display:flex;
+align-items:center;
+gap:8px;
+padding:0 15px;
+}
+
+.terminal-bar span{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#8b949e;
+}
+
+.terminal-content{padding:35px;text-align:left;}
+.prompt{color:#00ff88;}
+.hero-name{color:#fff;font-size:2rem;font-weight:700;margin:18px 0;}
+.hero-role{color:#79c0ff;margin-bottom:25px;}
+.hero-degree{color:#d2a8ff;font-weight:600;}
+.hero-school{color:#8b949e;margin-bottom:25px;}
+.hero-thm{color:#ffa657;font-weight:700;margin-bottom:25px;}
+.cursor{animation:blink 1s infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+<canvas id='network-canvas'></canvas>
     <!-- ========== HEADER ========== -->
-    <header>
-        <!--<div class="profile-image">
-            <img src="mgl-pro.jpeg" alt="Miguel Reguero">
-        </div>-->
-        <h1 id="nombre-completo">Miguel Reguero</h1>
-        <p class="subtitle">Cybersecurity | Red & Blue Team | Pentesting · SOC · Malware Analysis | Máster en Ciberseguridad @ IMMUNE × Nebrija × Santander | Top 5% TryHackMe</p>
-    </header>
+    
+<header>
+<div class="hero-terminal">
+<div class="terminal-bar"><span></span><span></span><span></span></div>
+<div class="terminal-content">
+<div class="prompt">miguel@security:~$ whoami</div>
+<div class="hero-name">Miguel Reguero</div>
+<div class="hero-role">Cybersecurity Engineer | Purple Team</div>
+<div class="hero-degree">Master's Degree in Cybersecurity</div>
+<div class="hero-school">IMMUNE × Santander × Nebrija</div>
+<div class="hero-thm">TryHackMe Top 5%</div>
+<div class="prompt">miguel@security:~$ <span class="cursor">█</span></div>
+</div>
+</div>
+</header>
+
 
     <!-- ========== NAVEGACIÓN ========== -->
     <nav>
@@ -1014,5 +1077,113 @@
         // Iniciar efecto de typing después de 500ms
         setTimeout(typeWriter, 500);
     </script>
+
+<script>
+const canvas=document.getElementById('network-canvas');
+const ctx=canvas.getContext('2d');
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+
+const labels=['SOC','SIEM','MITRE','IOC','DNS','TLS','EDR','OSINT'];
+const nodes=[];
+
+for(let i=0;i<45;i++){
+nodes.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5)*0.08,
+vy:(Math.random()-0.5)*0.08,
+label:Math.random()>0.9?labels[Math.floor(Math.random()*labels.length)]:''
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<nodes.length;i++){
+const n=nodes[i];
+
+n.x+=n.vx;
+n.y+=n.vy;
+
+if(n.x<0||n.x>canvas.width)n.vx*=-1;
+if(n.y<0||n.y>canvas.height)n.vy*=-1;
+
+for(let j=i+1;j<nodes.length;j++){
+const m=nodes[j];
+const dx=n.x-m.x;
+const dy=n.y-m.y;
+const d=Math.sqrt(dx*dx+dy*dy);
+
+if(d<180){
+ctx.strokeStyle='rgba(0,255,136,.06)';
+ctx.beginPath();
+ctx.moveTo(n.x,n.y);
+ctx.lineTo(m.x,m.y);
+ctx.stroke();
+}
+}
+
+ctx.fillStyle='rgba(0,255,136,.25)';
+ctx.beginPath();
+ctx.arc(n.x,n.y,2,0,Math.PI*2);
+ctx.fill();
+
+if(n.label){
+ctx.fillStyle='rgba(0,255,136,.15)';
+ctx.font='11px JetBrains Mono';
+ctx.fillText(n.label,n.x+8,n.y-8);
+}
+}
+
+requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('mousemove',e=>{
+window.__mouseX=e.clientX;
+window.__mouseY=e.clientY;
+});
+
+window.addEventListener('scroll',()=>{
+window.__scrollY=window.scrollY;
+});
+
+setInterval(()=>{
+nodes.forEach(n=>{
+if(Math.random()>0.985){
+n.label=labels[Math.floor(Math.random()*labels.length)];
+}
+if(Math.random()>0.997){
+n.label='';
+}
+});
+},1200);
+
+function enhancedAnimate(){
+for(const n of nodes){
+
+const mx=(window.__mouseX||0)-n.x;
+const my=(window.__mouseY||0)-n.y;
+const dist=Math.sqrt(mx*mx+my*my);
+
+if(dist<180){
+n.x += mx*0.00015;
+n.y += my*0.00015;
+}
+
+n.y += ((window.__scrollY||0)*0.00002);
+}
+requestAnimationFrame(enhancedAnimate);
+}
+enhancedAnimate();
+</script>
+
+
 </body>
 </html>
