@@ -6,7 +6,6 @@
     <title>Miguel Reguero | Cybersecurity Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
             --primary-color: #00ff88;
             --secondary-color: #0a0e27;
@@ -14,926 +13,560 @@
             --card-bg: #161b22;
             --text-primary: #e6edf3;
             --text-secondary: #8b949e;
-            --accent-red: #ff4d4d;
             --transition: all 0.3s ease;
         }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* HEADER */
+        header { background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1f3a 100%); padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
+        header::before { content: ''; position: absolute; top:0;left:0;right:0;bottom:0; background: repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(0,255,136,0.03) 2px,rgba(0,255,136,0.03) 4px); animation: scan 8s linear infinite; }
+        @keyframes scan { 0%{transform:translateX(0)} 100%{transform:translateX(50px)} }
 
-        /* ========== HEADER ========== */
-        header {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1f3a 100%);
-            padding: 100px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+        /* NAV */
+        nav { background: var(--card-bg); padding: 15px 0; position: sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.5); }
+        nav ul { display:flex; justify-content:center; flex-wrap:wrap; list-style:none; gap:30px; padding:0 20px; align-items:center; }
+        nav a { color:var(--text-primary); text-decoration:none; font-weight:500; transition:var(--transition); position:relative; }
+        nav a::after { content:''; position:absolute; bottom:-5px;left:0; width:0;height:2px; background:var(--primary-color); transition:var(--transition); }
+        nav a:hover::after { width:100%; }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,255,136,0.03) 2px, rgba(0,255,136,0.03) 4px);
-            animation: scan 8s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50px); }
-        }
-
-        /* ========== NAV ========== */
-        nav {
-            background: var(--card-bg);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            list-style: none;
-            gap: 30px;
-            padding: 0 20px;
-        }
-
-        nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 2px;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after { width: 100%; }
-
-        /* ========== GENERAL ========== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        section { margin-bottom: 80px; }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; left: 0;
-            width: 60%; height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), transparent);
-        }
-
-        /* ========== ABOUT ========== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .about-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,255,136,0.2);
-        }
-
-        .about-card h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 1.3rem; }
-        .about-card p { margin-bottom: 12px; color: var(--text-secondary); }
-
-        /* ========== SKILLS ========== */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border-top: 3px solid var(--primary-color);
-        }
-
-        .skill-category h3 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; }
-
-        .skill-item {
-            background: var(--secondary-color);
-            padding: 12px 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-        }
-
-        .skill-item:hover {
-            background: rgba(0,255,136,0.1);
-            transform: translateX(5px);
-        }
-
-        .skill-item::before { content: '▸'; color: var(--primary-color); font-weight: bold; }
-
-        /* ========== PROJECTS ========== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(0,255,136,0.1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,255,136,0.3);
-            border-color: var(--primary-color);
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, var(--secondary-color), #1a1f3a);
-            padding: 30px;
-            text-align: center;
-        }
-
-        .project-header h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px; }
-
-        .project-body {
-            padding: 25px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-body p { color: var(--text-secondary); margin-bottom: 20px; flex: 1; }
-
-        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-
-        .project-tag {
-            background: rgba(0,255,136,0.08);
-            color: var(--primary-color);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            border: 1px solid rgba(0,255,136,0.25);
-            font-family: 'Courier New', monospace;
-        }
-
-        .project-links { display: flex; gap: 15px; flex-wrap: wrap; }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--primary-color);
-            color: var(--dark-bg);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            background: #00cc6f;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,255,136,0.4);
-        }
-
-        .btn-outline {
-            display: inline-block;
-            padding: 10px 20px;
+        /* LANG TOGGLE BUTTON */
+        .lang-btn {
             background: transparent;
+            border: 1.5px solid var(--primary-color);
             color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            border: 1px solid var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .btn-outline:hover {
-            background: rgba(0,255,136,0.1);
-            transform: scale(1.05);
-        }
-
-        .project-badge {
-            display: inline-block;
-            background: rgba(0,255,136,0.15);
-            color: var(--primary-color);
-            border: 1px solid rgba(0,255,136,0.4);
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.05em;
         }
+        .lang-btn:hover { background: rgba(0,255,136,0.12); box-shadow: 0 0 12px rgba(0,255,136,0.3); transform: scale(1.05); }
 
-        /* ========== TIMELINE ========== */
-        .timeline { position: relative; padding-left: 50px; }
+        /* GENERAL */
+        .container { max-width:1200px; margin:0 auto; padding:80px 20px; }
+        section { margin-bottom:80px; }
+        h2 { font-size:2.5rem; margin-bottom:40px; color:var(--primary-color); position:relative; display:inline-block; }
+        h2::after { content:''; position:absolute; bottom:-10px;left:0; width:60%;height:3px; background:linear-gradient(90deg,var(--primary-color),transparent); }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px; top: 0; bottom: 0;
-            width: 2px;
-            background: var(--primary-color);
-        }
+        /* ABOUT */
+        .about-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+        .about-card { background:var(--card-bg); padding:30px; border-radius:10px; border-left:4px solid var(--primary-color); transition:var(--transition); }
+        .about-card:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,255,136,0.2); }
+        .about-card h3 { color:var(--primary-color); margin-bottom:15px; font-size:1.3rem; }
+        .about-card p { margin-bottom:12px; color:var(--text-secondary); }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            transition: var(--transition);
-        }
+        /* SKILLS */
+        .skills-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+        .skill-category { background:var(--card-bg); padding:30px; border-radius:10px; border-top:3px solid var(--primary-color); }
+        .skill-category h3 { color:var(--primary-color); margin-bottom:20px; font-size:1.4rem; }
+        .skill-item { background:var(--secondary-color); padding:12px 20px; margin:10px 0; border-radius:5px; display:flex; align-items:center; gap:10px; transition:var(--transition); }
+        .skill-item:hover { background:rgba(0,255,136,0.1); transform:translateX(5px); }
+        .skill-item::before { content:'▸'; color:var(--primary-color); font-weight:bold; }
 
-        .timeline-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(0,255,136,0.2);
-        }
+        /* PROJECTS */
+        .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
+        .project-card { background:var(--card-bg); border-radius:10px; overflow:hidden; transition:var(--transition); border:1px solid rgba(0,255,136,0.1); display:flex; flex-direction:column; }
+        .project-card:hover { transform:translateY(-10px); box-shadow:0 15px 40px rgba(0,255,136,0.3); border-color:var(--primary-color); }
+        .project-header { background:linear-gradient(135deg,var(--secondary-color),#1a1f3a); padding:30px; text-align:center; }
+        .project-header h3 { color:var(--primary-color); font-size:1.5rem; margin-bottom:10px; }
+        .project-body { padding:25px; flex:1; display:flex; flex-direction:column; }
+        .project-body p { color:var(--text-secondary); margin-bottom:20px; flex:1; }
+        .project-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+        .project-tag { background:rgba(0,255,136,0.08); color:var(--primary-color); padding:4px 10px; border-radius:12px; font-size:0.78rem; border:1px solid rgba(0,255,136,0.25); font-family:'Courier New',monospace; }
+        .project-links { display:flex; gap:15px; flex-wrap:wrap; }
+        .btn { display:inline-block; padding:10px 20px; background:var(--primary-color); color:var(--dark-bg); text-decoration:none; border-radius:5px; font-weight:600; transition:var(--transition); }
+        .btn:hover { background:#00cc6f; transform:scale(1.05); box-shadow:0 5px 15px rgba(0,255,136,0.4); }
+        .project-badge { display:inline-block; background:rgba(0,255,136,0.15); color:var(--primary-color); border:1px solid rgba(0,255,136,0.4); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:600; margin-top:8px; letter-spacing:0.05em; }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -38px; top: 30px;
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            border: 3px solid var(--dark-bg);
-            box-shadow: 0 0 10px rgba(0,255,136,0.5);
-        }
+        /* TIMELINE */
+        .timeline { position:relative; padding-left:50px; }
+        .timeline::before { content:''; position:absolute; left:20px;top:0;bottom:0; width:2px; background:var(--primary-color); }
+        .timeline-item { position:relative; margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:10px; transition:var(--transition); }
+        .timeline-item:hover { transform:translateX(10px); box-shadow:0 5px 20px rgba(0,255,136,0.2); }
+        .timeline-item::before { content:''; position:absolute; left:-38px;top:30px; width:16px;height:16px; border-radius:50%; background:var(--primary-color); border:3px solid var(--dark-bg); box-shadow:0 0 10px rgba(0,255,136,0.5); }
+        .timeline-item h3 { color:var(--primary-color); margin-bottom:10px; }
+        .timeline-date { color:var(--text-secondary); font-size:0.9rem; margin-bottom:10px; }
+        .timeline-skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:15px; }
+        .tag { background:rgba(0,255,136,0.1); color:var(--primary-color); padding:5px 12px; border-radius:15px; font-size:0.85rem; border:1px solid rgba(0,255,136,0.3); }
 
-        .timeline-item h3 { color: var(--primary-color); margin-bottom: 10px; }
-        .timeline-date { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; }
+        /* EDUCATION */
+        .education-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; }
+        .education-card { background:var(--card-bg); padding:25px; border-radius:10px; border-left:4px solid var(--primary-color); transition:var(--transition); }
+        .education-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,255,136,0.2); }
+        .education-card h3 { color:var(--primary-color); margin-bottom:10px; }
+        .education-card p { color:var(--text-secondary); font-size:0.95rem; margin-top:6px; }
 
-        .timeline-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        /* CONTACT */
+        .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; margin-top:40px; }
+        .contact-card { background:var(--card-bg); padding:30px; border-radius:10px; text-align:center; transition:var(--transition); border:2px solid transparent; }
+        .contact-card:hover { border-color:var(--primary-color); transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,255,136,0.2); }
+        .contact-icon { font-size:2.5rem; margin-bottom:15px; }
+        .contact-card h3 { color:var(--primary-color); margin-bottom:10px; }
+        .contact-card a { color:var(--text-secondary); text-decoration:none; transition:var(--transition); }
+        .contact-card a:hover { color:var(--primary-color); }
 
-        .tag {
-            background: rgba(0,255,136,0.1);
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(0,255,136,0.3);
-        }
+        /* FOOTER */
+        footer { background:var(--secondary-color); padding:30px 20px; text-align:center; color:var(--text-secondary); }
 
-        /* ========== EDUCATION ========== */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
+        /* RESPONSIVE */
+        @media(max-width:768px) { h2{font-size:2rem;} nav ul{gap:15px;} .container{padding:40px 15px;} .timeline{padding-left:30px;} .timeline-item::before{left:-28px;} }
 
-        .education-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,255,136,0.2);
-        }
-
-        .education-card h3 { color: var(--primary-color); margin-bottom: 10px; }
-        .education-card p { color: var(--text-secondary); font-size: 0.95rem; margin-top: 6px; }
-
-        /* ========== CONTACT ========== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .contact-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,255,136,0.2);
-        }
-
-        .contact-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .contact-card h3 { color: var(--primary-color); margin-bottom: 10px; }
-        .contact-card a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); }
-        .contact-card a:hover { color: var(--primary-color); }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: var(--secondary-color);
-            padding: 30px 20px;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            h2 { font-size: 2rem; }
-            nav ul { gap: 15px; }
-            .container { padding: 40px 15px; }
-            .timeline { padding-left: 30px; }
-            .timeline-item::before { left: -28px; }
-        }
-
-        /* ========== TERMINAL + CANVAS ========== */
-        #network-canvas {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .hero-terminal {
-            width: min(680px, 90vw);
-            background: rgba(11,15,20,.92);
-            border: 1px solid rgba(0,255,136,.15);
-            border-radius: 14px;
-            overflow: hidden;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 40px rgba(0,255,136,.08);
-            font-family: 'JetBrains Mono', monospace;
-            margin: auto;
-        }
-
-        .terminal-bar {
-            height: 42px;
-            background: #161b22;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 15px;
-        }
-
-        .terminal-bar span {
-            width: 12px; height: 12px;
-            border-radius: 50%;
-            background: #8b949e;
-        }
-
-        .terminal-content { padding: 35px; text-align: left; }
-        .prompt { color: #00ff88; }
-        .hero-name { color: #fff; font-size: 2rem; font-weight: 700; margin: 18px 0; }
-        .hero-role { color: #79c0ff; margin-bottom: 25px; }
-        .hero-degree { color: #d2a8ff; font-weight: 600; }
-        .hero-school { color: #8b949e; margin-bottom: 25px; }
-        .hero-thm { color: #ffa657; font-weight: 700; margin-bottom: 25px; }
-        .cursor { animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
+        /* TERMINAL */
+        #network-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+        .hero-terminal { width:min(680px,90vw); background:rgba(11,15,20,.92); border:1px solid rgba(0,255,136,.15); border-radius:14px; overflow:hidden; backdrop-filter:blur(8px); box-shadow:0 0 40px rgba(0,255,136,.08); font-family:'JetBrains Mono',monospace; margin:auto; }
+        .terminal-bar { height:42px; background:#161b22; display:flex; align-items:center; gap:8px; padding:0 15px; }
+        .terminal-bar span { width:12px;height:12px; border-radius:50%; background:#8b949e; }
+        .terminal-content { padding:35px; text-align:left; }
+        .prompt { color:#00ff88; }
+        .hero-name { color:#fff; font-size:2rem; font-weight:700; margin:18px 0; }
+        .hero-role { color:#79c0ff; margin-bottom:25px; }
+        .hero-degree { color:#d2a8ff; font-weight:600; }
+        .hero-school { color:#8b949e; margin-bottom:25px; }
+        .hero-thm { color:#ffa657; font-weight:700; margin-bottom:25px; }
+        .cursor { animation:blink 1s infinite; }
+        @keyframes blink { 50%{opacity:0} }
     </style>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 <canvas id="network-canvas"></canvas>
 
-<!-- ========== HEADER ========== -->
+<!-- HEADER -->
 <header>
     <div class="hero-terminal">
         <div class="terminal-bar"><span></span><span></span><span></span></div>
         <div class="terminal-content">
             <div class="prompt">root@root:~$ whoami</div>
             <div class="hero-name">Miguel Reguero</div>
-            <div class="hero-role">Blue Team · SOC Analyst · DFIR</div>
-            <div class="hero-degree">Master's in Cybersecurity — GPA 9.5/10</div>
+            <div class="hero-role" data-en="Blue Team · SOC Analyst · DFIR" data-es="Blue Team · SOC Analyst · DFIR">Blue Team · SOC Analyst · DFIR</div>
+            <div class="hero-degree" data-en="Master's in Cybersecurity — GPA 9.5/10" data-es="Máster en Ciberseguridad — Nota media 9.5/10">Master's in Cybersecurity — GPA 9.5/10</div>
             <div class="hero-school">IMMUNE × Banco Santander × Universidad Nebrija</div>
-            <div class="hero-thm">TryHackMe Top 5% Global 🔥 +215-day streak</div>
+            <div class="hero-thm" data-en="TryHackMe Top 5% Global 🔥 +215-day streak" data-es="TryHackMe Top 5% Mundial 🔥 +215 días de racha">TryHackMe Top 5% Global 🔥 +215-day streak</div>
             <div class="prompt">root@root:~$ <span class="cursor">█</span></div>
         </div>
     </div>
 </header>
 
-<!-- ========== NAV ========== -->
+<!-- NAV -->
 <nav>
     <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
+        <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
+        <li><a href="#projects" data-en="Projects" data-es="Proyectos">Projects</a></li>
+        <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
+        <li><a href="#education" data-en="Education" data-es="Educación">Education</a></li>
+        <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+        <li><button class="lang-btn" id="langToggle" onclick="toggleLang()">🌐 ES</button></li>
     </ul>
 </nav>
 
 <div class="container">
 
-    <!-- ========== ABOUT ========== -->
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>🇪🇸 Español</h3>
-                <p>Profesional de ciberseguridad con foco en <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Cursando un Máster en Ciberseguridad en IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) con media de <strong style="color:var(--primary-color)">9.5/10</strong> a falta de entregar el TFM.</p>
-                <p>Experiencia práctica construyendo entornos SOC de nivel Enterprise desde 0: Elastic SIEM, EDR con Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management y NG Firewall en Sophos XG.</p>
-                <p>Proyectos documentados públicamente en GitHub y LinkedIn. <strong style="color:var(--primary-color)">Top 5% mundial en TryHackMe · racha activa de +215 días.</strong></p>
+<!-- ABOUT -->
+<section id="about">
+    <h2 data-en="About Me" data-es="Sobre mí">About Me</h2>
+    <div class="about-grid">
+        <div class="about-card" id="about-card-es" style="display:none">
+            <h3>🇪🇸 Español</h3>
+            <p>Profesional de ciberseguridad con foco en <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Cursando un Máster en Ciberseguridad en IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) con media de <strong style="color:var(--primary-color)">9.5/10</strong> a falta de entregar el TFM.</p>
+            <p>Experiencia práctica construyendo entornos SOC de nivel Enterprise desde 0: Elastic SIEM, EDR con Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management y NG Firewall en Sophos XG.</p>
+            <p>Proyectos documentados públicamente en GitHub y LinkedIn. <strong style="color:var(--primary-color)">Top 5% mundial en TryHackMe · racha activa de +215 días.</strong></p>
+        </div>
+        <div class="about-card" id="about-card-en">
+            <h3>🇬🇧 English</h3>
+            <p>Cybersecurity professional focused on <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Completing a Master's in Cybersecurity at IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) with a GPA of <strong style="color:var(--primary-color)">9.5/10</strong>, pending final thesis.</p>
+            <p>Hands-on experience building enterprise-grade SOC environments from scratch: Elastic SIEM, EDR with Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management and NG Firewall on Sophos XG.</p>
+            <p>Projects publicly documented on GitHub and LinkedIn. <strong style="color:var(--primary-color)">Top 5% worldwide on TryHackMe · +215-day active streak.</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 data-en="Skills" data-es="Habilidades">Skills</h2>
+    <div class="skills-container">
+        <div class="skill-category">
+            <h3>🛡️ <span data-en="Defensive / SOC" data-es="Defensiva / SOC">Defensive / SOC</span></h3>
+            <div class="skill-item">Elastic SIEM · Elastic Defend (EDR)</div>
+            <div class="skill-item">Fleet Server + Fleet Agents</div>
+            <div class="skill-item">MISP · IRIS Case Management</div>
+            <div class="skill-item">Splunk + SPL · QRadar</div>
+            <div class="skill-item"><span data-en="Wireshark · Network analysis" data-es="Wireshark · Análisis de tráfico de red">Wireshark · Network analysis</span></div>
+            <div class="skill-item"><span data-en="Threat Hunting · Alert Triage" data-es="Threat Hunting · Triaje de alertas">Threat Hunting · Alert Triage</span></div>
+            <div class="skill-item"><span data-en="Incident Response" data-es="Respuesta a Incidentes">Incident Response</span></div>
+            <div class="skill-item">MITRE ATT&CK · Cyber Kill Chain</div>
+            <div class="skill-item">IDS/IPS · <span data-en="Vulnerability Management" data-es="Gestión de Vulnerabilidades">Vulnerability Management</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>🔍 Threat Intelligence / CTI</h3>
+            <div class="skill-item">Abuse.ch (MalwareBazaar, ThreatFox)</div>
+            <div class="skill-item">MISP</div>
+            <div class="skill-item">Maltego · Shodan</div>
+            <div class="skill-item">OSINT Framework</div>
+            <div class="skill-item">VirusTotal · AbuseIPDB</div>
+            <div class="skill-item"><span data-en="Passive reconnaissance" data-es="Reconocimiento pasivo">Passive reconnaissance</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>🧬 <span data-en="Malware Analysis &amp; Forensics" data-es="Análisis de Malware y Forense">Malware Analysis &amp; Forensics</span></h3>
+            <div class="skill-item">Ghidra · IDA Free</div>
+            <div class="skill-item">olevba · <span data-en="Static &amp; dynamic analysis" data-es="Análisis estático y dinámico">Static &amp; dynamic analysis</span></div>
+            <div class="skill-item">Autopsy · <span data-en="Memory forensics" data-es="Forense de memoria">Memory forensics</span></div>
+            <div class="skill-item">Volatility</div>
+            <div class="skill-item">CyberChef · CAPA</div>
+            <div class="skill-item">REMnux · FlareVM</div>
+        </div>
+        <div class="skill-category">
+            <h3>⚔️ <span data-en="Offensive Security" data-es="Seguridad Ofensiva">Offensive Security</span></h3>
+            <div class="skill-item"><span data-en="Nmap · Reconn &amp; enumeration" data-es="Nmap · Reconocimiento y enumeración">Nmap · Reconn &amp; enumeration</span></div>
+            <div class="skill-item">Metasploit Framework</div>
+            <div class="skill-item">Burp Suite</div>
+            <div class="skill-item">Web Hacking · OWASP Top 10</div>
+            <div class="skill-item">Hydra · Gobuster · SQLMap</div>
+            <div class="skill-item"><span data-en="Privilege Escalation (Linux &amp; Windows)" data-es="Escalada de Privilegios (Linux y Windows)">Privilege Escalation (Linux &amp; Windows)</span></div>
+            <div class="skill-item"><span data-en="Active Directory Attacks · Lateral Movement" data-es="Ataques a Active Directory · Movimiento Lateral">Active Directory Attacks · Lateral Movement</span></div>
+            <div class="skill-item">WordPress pentesting</div>
+        </div>
+        <div class="skill-category">
+            <h3>📋 GRC</h3>
+            <div class="skill-item">ISO/IEC 27001</div>
+            <div class="skill-item">ENS (<span data-en="National Security Framework" data-es="Esquema Nacional de Seguridad">National Security Framework</span>)</div>
+            <div class="skill-item">GDPR / RGPD</div>
+            <div class="skill-item"><span data-en="Risk Analysis · MAGERIT" data-es="Análisis de Riesgos · MAGERIT">Risk Analysis · MAGERIT</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>🔧 <span data-en="Infrastructure" data-es="Infraestructura">Infrastructure</span></h3>
+            <div class="skill-item">Linux · Bash scripting</div>
+            <div class="skill-item">Docker</div>
+            <div class="skill-item"><span data-en="Networking: OSI · TCP/IP · DNS · VPN" data-es="Redes: OSI · TCP/IP · DNS · VPN">Networking: OSI · TCP/IP · DNS · VPN</span></div>
+            <div class="skill-item">Active Directory · <span data-en="Windows environments" data-es="Entornos Windows">Windows environments</span></div>
+            <div class="skill-item">Hyper-V · Proxmox</div>
+            <div class="skill-item"><span data-en="Network segmentation · VLANs" data-es="Segmentación de red · VLANs">Network segmentation · VLANs</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>💻 <span data-en="Development &amp; Scripting" data-es="Desarrollo y Scripting">Development &amp; Scripting</span></h3>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">Bash</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">Java</div>
+            <div class="skill-item"><span data-en="Security task automation" data-es="Automatización de tareas de seguridad">Security task automation</span></div>
+        </div>
+        <div class="skill-category">
+            <h3>🌍 <span data-en="Languages" data-es="Idiomas">Languages</span></h3>
+            <div class="skill-item"><span data-en="Spanish (Native)" data-es="Español (Nativo)">Spanish (Native)</span></div>
+            <div class="skill-item"><span data-en="English — B2" data-es="Inglés — B2">English — B2</span></div>
+            <div class="skill-item"><span data-en="French — B2" data-es="Francés — B2">French — B2</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 data-en="Projects" data-es="Proyectos">Projects</h2>
+    <div class="projects-grid">
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🛰️ SOC Lab: Elastic Security Threat Detection Platform</h3>
+                <span class="project-badge">🔵 Lab Project</span>
             </div>
-            <div class="about-card">
-                <h3>🇬🇧 English</h3>
-                <p>Cybersecurity professional focused on <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Completing a Master's in Cybersecurity at IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) with a GPA of <strong style="color:var(--primary-color)">9.5/10</strong>, pending final thesis.</p>
-                <p>Hands-on experience building enterprise-grade SOC environments from scratch: Elastic SIEM, EDR with Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management and NG Firewall on Sophos XG.</p>
-                <p>Projects publicly documented on GitHub and LinkedIn. <strong style="color:var(--primary-color)">Top 5% worldwide on TryHackMe · +215-day active streak.</strong></p>
+            <div class="project-body">
+                <p><span data-en='Full enterprise SOC built on Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI integration with <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, ML anomaly detection and <strong style="color:var(--primary-color)">IRIS Case Management</strong>. EDR policies deployed via Fleet. All detections mapped to MITRE ATT&amp;CK.' data-es='SOC empresarial completo sobre Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, integración CTI con <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, detección de anomalías con ML e <strong style="color:var(--primary-color)">IRIS Case Management</strong>. Políticas EDR desplegadas vía Fleet. Todas las detecciones mapeadas contra MITRE ATT&amp;CK.'>Full enterprise SOC built on Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI integration with <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, ML anomaly detection and <strong style="color:var(--primary-color)">IRIS Case Management</strong>. EDR policies deployed via Fleet. All detections mapped to MITRE ATT&CK.</span></p>
+                <div class="project-tags"><span class="project-tag">Elastic SIEM</span><span class="project-tag">EDR</span><span class="project-tag">Fleet Server</span><span class="project-tag">MISP</span><span class="project-tag">Abuse.ch</span><span class="project-tag">ML Detection</span><span class="project-tag">IRIS</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">Docker</span><span class="project-tag">CTI</span><span class="project-tag">NSM</span></div>
+                <div class="project-links"><a href="https://github.com/Miguel-R13/SOC-Lab-Elastic-Security-Threat-Detection-Platform" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-    </section>
 
-    <!-- ========== SKILLS ========== -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-container">
-
-            <div class="skill-category">
-                <h3>🛡️ Defensive / SOC</h3>
-                <div class="skill-item">Elastic SIEM · Elastic Defend (EDR)</div>
-                <div class="skill-item">Fleet Server + Fleet Agents</div>
-                <div class="skill-item">MISP · IRIS Case Management</div>
-                <div class="skill-item">Splunk + SPL · QRadar</div>
-                <div class="skill-item">Wireshark · Network analysis</div>
-                <div class="skill-item">Threat Hunting · Alert Triage</div>
-                <div class="skill-item">Incident Response</div>
-                <div class="skill-item">MITRE ATT&CK · Cyber Kill Chain</div>
-                <div class="skill-item">IDS/IPS · Vulnerability Management</div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🚨 Incident Response Lab: Elastic + IRIS</h3>
+                <span class="project-badge">🔵 Lab Project</span>
             </div>
-
-            <div class="skill-category">
-                <h3>🔍 Threat Intelligence / CTI</h3>
-                <div class="skill-item">Abuse.ch (MalwareBazaar, ThreatFox)</div>
-                <div class="skill-item">MISP</div>
-                <div class="skill-item">Maltego · Shodan</div>
-                <div class="skill-item">OSINT Framework</div>
-                <div class="skill-item">VirusTotal · AbuseIPDB</div>
-                <div class="skill-item">Passive reconnaissance</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🧬 Malware Analysis & Forensics</h3>
-                <div class="skill-item">Ghidra · IDA Free</div>
-                <div class="skill-item">olevba · Static & dynamic analysis</div>
-                <div class="skill-item">Autopsy · Memory forensics</div>
-                <div class="skill-item">Volatility</div>
-                <div class="skill-item">CyberChef · CAPA</div>
-                <div class="skill-item">REMnux · FlareVM</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>⚔️ Offensive Security</h3>
-                <div class="skill-item">Nmap · Reconn & enumeration</div>
-                <div class="skill-item">Metasploit Framework</div>
-                <div class="skill-item">Burp Suite</div>
-                <div class="skill-item">Web Hacking · OWASP Top 10</div>
-                <div class="skill-item">Hydra · Gobuster · SQLMap</div>
-                <div class="skill-item">Privilege Escalation (Linux & Windows)</div>
-                <div class="skill-item">Active Directory Attacks · Lateral Movement</div>
-                <div class="skill-item">WordPress pentesting</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>📋 GRC</h3>
-                <div class="skill-item">ISO/IEC 27001</div>
-                <div class="skill-item">ENS (Esquema Nacional de Seguridad)</div>
-                <div class="skill-item">GDPR / RGPD</div>
-                <div class="skill-item">Risk Analysis · MAGERIT</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🔧 Infrastructure</h3>
-                <div class="skill-item">Linux · Bash scripting</div>
-                <div class="skill-item">Docker</div>
-                <div class="skill-item">Networking: OSI · TCP/IP · DNS · VPN</div>
-                <div class="skill-item">Active Directory · Windows environments</div>
-                <div class="skill-item">Hyper-V · Proxmox</div>
-                <div class="skill-item">Network segmentation · VLANs</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>💻 Development & Scripting</h3>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">Bash</div>
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">Java</div>
-                <div class="skill-item">Security task automation</div>
-            </div>
-
-            <div class="skill-category">
-                <h3>🌍 Languages</h3>
-                <div class="skill-item">Spanish (Native)</div>
-                <div class="skill-item">English — B2</div>
-                <div class="skill-item">French — B2</div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== PROJECTS ========== -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-
-            <!-- SOC Lab -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🛰️ SOC Lab: Elastic Security Threat Detection Platform</h3>
-                    <span class="project-badge">🔵 Lab Project</span>
-                </div>
-                <div class="project-body">
-                    <p>Full enterprise SOC built on Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI integration with <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, ML anomaly detection and <strong style="color:var(--primary-color)">IRIS Case Management</strong>. EDR policies deployed via Fleet. All detections mapped to MITRE ATT&CK.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Elastic SIEM</span>
-                        <span class="project-tag">EDR</span>
-                        <span class="project-tag">Fleet Server</span>
-                        <span class="project-tag">MISP</span>
-                        <span class="project-tag">Abuse.ch</span>
-                        <span class="project-tag">ML Detection</span>
-                        <span class="project-tag">IRIS</span>
-                        <span class="project-tag">MITRE ATT&CK</span>
-                        <span class="project-tag">Docker</span>
-                        <span class="project-tag">CTI</span>
-                        <span class="project-tag">NSM</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Miguel-R13/SOC-Lab-Elastic-Security-Threat-Detection-Platform" target="_blank" class="btn">GitHub →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Incident Response Lab -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🚨 Incident Response Lab: Elastic + IRIS</h3>
-                    <span class="project-badge">🔵 Lab Project</span>
-                </div>
-                <div class="project-body">
-                    <p>Full incident lifecycle with <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detection → triage → investigation → containment → closure. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> measured and documented throughout. Covers realistic Blue Team workflows end to end.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Elastic Security</span>
-                        <span class="project-tag">IRIS</span>
-                        <span class="project-tag">Incident Response</span>
-                        <span class="project-tag">MTTD / MTTR</span>
-                        <span class="project-tag">Triage</span>
-                        <span class="project-tag">DFIR</span>
-                        <span class="project-tag">Blue Team</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Miguel-R13" target="_blank" class="btn">GitHub →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sophos NGFW -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🔐 Sophos XG NGFW · Secure Network Architecture</h3>
-                    <span class="project-badge">🔵 Lab Project</span>
-                </div>
-                <div class="project-body">
-                    <p>Design and deployment of a <strong style="color:var(--primary-color)">Sophos XG NGFW</strong> on Hyper-V emulating a real corporate infrastructure. Multi-zone segmentation (LAN, Servers, Admin, Hypervisors, WiFi), Zero Trust policy, SSL/TLS inspection and Security Heartbeat. Security controls validated via <strong style="color:var(--primary-color)">lateral movement simulations and vulnerability scanning</strong>, strengthening defensive posture through port restriction and advanced HTTPS traffic filtering.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Sophos XG</span>
-                        <span class="project-tag">Hyper-V</span>
-                        <span class="project-tag">Network Segmentation</span>
-                        <span class="project-tag">Zero Trust</span>
-                        <span class="project-tag">VLANs</span>
-                        <span class="project-tag">SSL Inspection</span>
-                        <span class="project-tag">IPS</span>
-                        <span class="project-tag">VPN SSL</span>
-                        <span class="project-tag">Defense in Depth</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Miguel-R13/Sophos-NGFW-Lab" target="_blank" class="btn">GitHub →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Malware Analysis -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🛡️ Malware Analysis · Spear Phishing & VBA Downloader</h3>
-                    <span class="project-badge">🔵 Lab Project</span>
-                </div>
-                <div class="project-body">
-                    <p>Defensive forensic analysis of a two-stage <strong style="color:var(--primary-color)">Spear Phishing</strong> attack: VBA macro downloader in a <strong>.docm</strong> file + Python payload for data exfiltration. Full attack chain documented (OSINT → phishing → macro → download → exfiltration), <strong style="color:var(--primary-color)">MITRE ATT&CK TTP mapping</strong>, IOC extraction, C2 analysis and defensive recommendations. Performed in isolated environment with REMnux v7, olevba, AES-256, chain of custody.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Spear Phishing</span>
-                        <span class="project-tag">VBA Macro</span>
-                        <span class="project-tag">Python Malware</span>
-                        <span class="project-tag">MITRE ATT&CK</span>
-                        <span class="project-tag">IOCs</span>
-                        <span class="project-tag">REMnux</span>
-                        <span class="project-tag">Static Analysis</span>
-                        <span class="project-tag">AES-256</span>
-                        <span class="project-tag">Cyber Kill Chain</span>
-                        <span class="project-tag">Blue Team</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">GitHub →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- HoneyPot -->
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🍯 HoneyPot · Threat Detection & Analysis</h3>
-                    <span class="project-badge">🟡 In Development</span>
-                </div>
-                <div class="project-body">
-                    <p>Custom <strong style="color:var(--primary-color)">HoneyPot</strong> built to capture real malicious activity, study attacker TTPs and generate actionable threat intelligence from traffic captured in the lab environment.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">HoneyPot</span>
-                        <span class="project-tag">Threat Intelligence</span>
-                        <span class="project-tag">TTPs Analysis</span>
-                        <span class="project-tag">Network Monitoring</span>
-                        <span class="project-tag">Log Analysis</span>
-                        <span class="project-tag">Python</span>
-                    </div>
-                    <div class="project-links">
-                        <span style="color:var(--text-secondary);font-size:0.9rem;align-self:center;">🔧 Repository coming soon</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== EXPERIENCE ========== -->
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <h3>Junior Solution Engineer | Smartsheet Consultant & Dev</h3>
-                <p class="timeline-date">Uniendo Nodos · Full-time</p>
-                <p class="timeline-date">📅 September 2024 – June 2025 · 10 months</p>
-                <p class="timeline-date">📍 Madrid, Spain</p>
-                <p>Development of enterprise solutions on Smartsheet for clients across multiple sectors. Translating business requirements into technical architectures, workflow automation and dashboard design for data-driven decision making. Process automation with native integrations and Bridge by Smartsheet. User training and platform adoption support.</p>
-                <div class="timeline-skills">
-                    <span class="tag">Smartsheet</span>
-                    <span class="tag">Process automation</span>
-                    <span class="tag">Bridge by Smartsheet</span>
-                    <span class="tag">Dashboards & KPIs</span>
-                    <span class="tag">Scrum / Kanban</span>
-                    <span class="tag">Consulting</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <h3>Co-Manager · Training & Development · Recruitment Coordinator</h3>
-                <p class="timeline-date">DO & CO AG · Full-time</p>
-                <p class="timeline-date">📅 March 2021 – August 2023 · 2 years 6 months</p>
-                <p class="timeline-date">📍 Madrid / Vienna / Paris / Qatar / Silverstone / Monza</p>
-                <p>Team management at high-profile international events: F1 (Silverstone, Monza, Vienna, Saudi Arabia, Monaco), FIFA World Cup Qatar 2022, UEFA Euro 2021, ATP Masters Madrid & Vienna, UEFA Champions League Finals Paris & Istanbul. Learning & Development Manager and Recruitment Coordinator focused on team-building and rapid learning environments.</p>
-                <div class="timeline-skills">
-                    <span class="tag">Team management</span>
-                    <span class="tag">Event operations</span>
-                    <span class="tag">Foreign languages</span>
-                    <span class="tag">Performance evaluation</span>
-                    <span class="tag">Leadership</span>
-                    <span class="tag">Crisis management</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== EDUCATION ========== -->
-    <section id="education">
-        <h2>Education & Certifications</h2>
-        <div class="education-grid">
-
-            <div class="education-card">
-                <h3>🛡️ Master's in Cybersecurity</h3>
-                <p><strong style="color:var(--primary-color)">IMMUNE Technology Institute × Universidad Nebrija × Banco Santander</strong></p>
-                <p>Oct 2025 – Oct 2026 · <strong style="color:var(--primary-color)">GPA 9.5/10</strong> — Pending Final Thesis</p>
-                <p>Digital Forensics · System Hardening · Cybersecurity & Cyber Threats · Cryptography · Ethical Hacking & OSINT · Malware Analysis · Incident Response · Threat Hunting & Threat Intelligence · Risk Management (ISO 27001, ENS, GDPR)</p>
-            </div>
-
-            <div class="education-card">
-                <h3>🎓 DAM — Higher Technician in Multiplatform Application Development</h3>
-                <p><strong style="color:var(--primary-color)">CESUR Madrid</strong></p>
-                <p>Official qualification in software development, OOP, databases, systems administration.</p>
-            </div>
-
-            <div class="education-card" style="border-left-color:#ff6b35;">
-                <h3>🎯 TryHackMe</h3>
-                <p><strong style="color:#ff6b35;">Top 5% Global · 🔥 +215-day streak</strong></p>
-                <p>Daily practice in pentesting labs, CTFs, malware analysis and defence. Consistent hands-on learning.</p>
-                <p style="margin-top:10px;">
-                    <a href="https://tryhackme.com/p/PYNS" target="_blank" style="color:#ff6b35;text-decoration:none;font-weight:600;border:1px solid #ff6b35;padding:5px 12px;border-radius:5px;transition:all 0.3s ease;"
-                       onmouseover="this.style.background='rgba(255,107,53,0.15)'"
-                       onmouseout="this.style.background='transparent'">
-                        View THM profile →
-                    </a>
-                </p>
-            </div>
-
-            <div class="education-card">
-                <h3>📘 Security Analyst Path | THM</h3>
-                <p>Security Analyst Level 1 (SAL1)</p>
-                <p>SOC Level 1 & SOC Level 2</p>
-                <p>Advanced Endpoint Investigations</p>
-            </div>
-
-            <div class="education-card">
-                <h3>🎯 Penetration Tester Path | THM</h3>
-                <p>Jr Penetration Tester (PT1)</p>
-                <p>Web Application Pentesting</p>
-                <p>Web Application Red Teaming</p>
-                <p>Red Teaming</p>
-            </div>
-
-            <div class="education-card">
-                <h3>📜 In Progress</h3>
-                <p><strong style="color:var(--primary-color)">Blue Team Level 1 (BTL1)</strong></p>
-                <p><strong style="color:var(--primary-color)">CompTIA Security+</strong></p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== CONTACT ========== -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="contact-icon">📧</div>
-                <h3>Email</h3>
-                <a href="mailto:miguelrgr.cyber@gmail.com">miguelrgr.cyber@gmail.com</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">💼</div>
-                <h3>LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/miguel-reguero/" target="_blank">linkedin.com/in/miguel-reguero</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">💻</div>
-                <h3>GitHub</h3>
-                <a href="https://github.com/Miguel-R13" target="_blank">github.com/Miguel-R13</a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">🎯</div>
-                <h3>TryHackMe</h3>
-                <a href="https://tryhackme.com/p/PYNS" target="_blank">tryhackme.com/p/PYNS</a>
-                <p style="margin-top:8px;font-size:0.85rem;color:var(--primary-color);font-weight:600;">Top 5% Global · 🔥 +215 days</p>
+            <div class="project-body">
+                <p><span data-en='Full incident lifecycle with <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detection → triage → investigation → containment → closure. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> measured and documented throughout. Covers realistic Blue Team workflows end to end.' data-es='Ciclo de vida completo del incidente con <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detección → triaje → investigación → contención → cierre. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> medidos y documentados. Cubre flujos de trabajo reales de Blue Team de principio a fin.'>Full incident lifecycle with <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detection → triage → investigation → containment → closure. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> measured and documented throughout. Covers realistic Blue Team workflows end to end.</span></p>
+                <div class="project-tags"><span class="project-tag">Elastic Security</span><span class="project-tag">IRIS</span><span class="project-tag">Incident Response</span><span class="project-tag">MTTD / MTTR</span><span class="project-tag">Triage</span><span class="project-tag">DFIR</span><span class="project-tag">Blue Team</span></div>
+                <div class="project-links"><a href="https://github.com/Miguel-R13" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-    </section>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🔐 Sophos XG NGFW · <span data-en="Secure Network Architecture" data-es="Arquitectura de Red Segura">Secure Network Architecture</span></h3>
+                <span class="project-badge">🔵 Lab Project</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Design and deployment of a <strong style="color:var(--primary-color)">Sophos XG NGFW</strong> on Hyper-V emulating a real corporate infrastructure. Multi-zone segmentation (LAN, Servers, Admin, Hypervisors, WiFi), Zero Trust policy, SSL/TLS inspection and Security Heartbeat. Security controls validated via <strong style="color:var(--primary-color)">lateral movement simulations and vulnerability scanning</strong>, strengthening defensive posture through port restriction and advanced HTTPS traffic filtering.' data-es='Diseño y despliegue de un <strong style="color:var(--primary-color)">NGFW Sophos XG</strong> en Hyper-V emulando una infraestructura corporativa real. Segmentación multizónica (LAN, Servidores, Administración, Hipervisores, WiFi), política Zero Trust, inspección SSL/TLS y Security Heartbeat. Validación de controles de seguridad mediante <strong style="color:var(--primary-color)">simulaciones de movimiento lateral y escaneo de vulnerabilidades</strong>, optimizando la postura defensiva mediante restricción de puertos y filtrado avanzado de tráfico HTTPS.'>Design and deployment of a <strong style="color:var(--primary-color)">Sophos XG NGFW</strong> on Hyper-V emulating a real corporate infrastructure. Multi-zone segmentation (LAN, Servers, Admin, Hypervisors, WiFi), Zero Trust policy, SSL/TLS inspection and Security Heartbeat. Security controls validated via <strong style="color:var(--primary-color)">lateral movement simulations and vulnerability scanning</strong>, strengthening defensive posture through port restriction and advanced HTTPS traffic filtering.</span></p>
+                <div class="project-tags"><span class="project-tag">Sophos XG</span><span class="project-tag">Hyper-V</span><span class="project-tag">Network Segmentation</span><span class="project-tag">Zero Trust</span><span class="project-tag">VLANs</span><span class="project-tag">SSL Inspection</span><span class="project-tag">IPS</span><span class="project-tag">VPN SSL</span><span class="project-tag">Defense in Depth</span></div>
+                <div class="project-links"><a href="https://github.com/Miguel-R13/Sophos-NGFW-Lab" target="_blank" class="btn">GitHub →</a></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🛡️ <span data-en="Malware Analysis · Spear Phishing &amp; VBA Downloader" data-es="Análisis de Malware · Spear Phishing y VBA Downloader">Malware Analysis · Spear Phishing &amp; VBA Downloader</span></h3>
+                <span class="project-badge">🔵 Lab Project</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Defensive forensic analysis of a two-stage <strong style="color:var(--primary-color)">Spear Phishing</strong> attack: VBA macro downloader in a <strong>.docm</strong> file + Python payload for data exfiltration. Full attack chain documented (OSINT → phishing → macro → download → exfiltration), <strong style="color:var(--primary-color)">MITRE ATT&amp;CK TTP mapping</strong>, IOC extraction, C2 analysis and defensive recommendations. Isolated environment: REMnux v7, olevba, AES-256, chain of custody.' data-es='Análisis forense defensivo de un ataque <strong style="color:var(--primary-color)">Spear Phishing</strong> en dos fases: macro VBA downloader en archivo <strong>.docm</strong> + payload Python para exfiltración de datos. Cadena de ataque completa documentada (OSINT → phishing → macro → descarga → exfiltración), <strong style="color:var(--primary-color)">mapeo de TTPs con MITRE ATT&amp;CK</strong>, extracción de IOCs, análisis de C2 y medidas defensivas. Entorno aislado: REMnux v7, olevba, AES-256, cadena de custodia.'>Defensive forensic analysis of a two-stage <strong style="color:var(--primary-color)">Spear Phishing</strong> attack: VBA macro downloader in a <strong>.docm</strong> file + Python payload for data exfiltration. Full attack chain documented (OSINT → phishing → macro → download → exfiltration), <strong style="color:var(--primary-color)">MITRE ATT&CK TTP mapping</strong>, IOC extraction, C2 analysis and defensive recommendations. Isolated environment: REMnux v7, olevba, AES-256, chain of custody.</span></p>
+                <div class="project-tags"><span class="project-tag">Spear Phishing</span><span class="project-tag">VBA Macro</span><span class="project-tag">Python Malware</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">IOCs</span><span class="project-tag">REMnux</span><span class="project-tag">Static Analysis</span><span class="project-tag">AES-256</span><span class="project-tag">Cyber Kill Chain</span><span class="project-tag">Blue Team</span></div>
+                <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">GitHub →</a></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🍯 HoneyPot · <span data-en="Threat Detection &amp; Analysis" data-es="Detección y Análisis de Amenazas">Threat Detection &amp; Analysis</span></h3>
+                <span class="project-badge" data-en="🟡 In Development" data-es="🟡 En desarrollo">🟡 In Development</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Custom <strong style="color:var(--primary-color)">HoneyPot</strong> built to capture real malicious activity, study attacker TTPs and generate actionable threat intelligence from traffic captured in the lab environment.' data-es='<strong style="color:var(--primary-color)">HoneyPot</strong> propio para capturar actividad maliciosa real, estudiar TTPs de atacantes y generar inteligencia de amenazas accionable a partir del tráfico capturado en el entorno de laboratorio.'>Custom <strong style="color:var(--primary-color)">HoneyPot</strong> built to capture real malicious activity, study attacker TTPs and generate actionable threat intelligence from traffic captured in the lab environment.</span></p>
+                <div class="project-tags"><span class="project-tag">HoneyPot</span><span class="project-tag">Threat Intelligence</span><span class="project-tag">TTPs Analysis</span><span class="project-tag">Network Monitoring</span><span class="project-tag">Log Analysis</span><span class="project-tag">Python</span></div>
+                <div class="project-links"><span style="color:var(--text-secondary);font-size:0.9rem;align-self:center;" data-en="🔧 Repository coming soon" data-es="🔧 Repositorio próximamente">🔧 Repository coming soon</span></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <h2 data-en="Experience" data-es="Experiencia">Experience</h2>
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>Junior Solution Engineer | Smartsheet Consultant &amp; Dev</h3>
+            <p class="timeline-date">Uniendo Nodos · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
+            <p class="timeline-date">📅 <span data-en="September 2024 – June 2025 · 10 months" data-es="Septiembre 2024 – Junio 2025 · 10 meses">September 2024 – June 2025 · 10 months</span></p>
+            <p class="timeline-date">📍 Madrid, <span data-en="Spain" data-es="España">Spain</span></p>
+            <p><span data-en="Development of enterprise solutions on Smartsheet for clients across multiple sectors. Translating business requirements into technical architectures, workflow automation and dashboard design for data-driven decision making. Process automation with native integrations and Bridge by Smartsheet. User training and platform adoption support." data-es="Desarrollo de soluciones empresariales sobre Smartsheet para clientes de diversos sectores. Traducción de necesidades de negocio en arquitecturas técnicas, automatización de workflows y diseño de dashboards para la toma de decisiones. Automatización de procesos con integraciones nativas y Bridge by Smartsheet. Formación y acompañamiento a usuarios en la adopción de la plataforma.">Development of enterprise solutions on Smartsheet for clients across multiple sectors. Translating business requirements into technical architectures, workflow automation and dashboard design for data-driven decision making. Process automation with native integrations and Bridge by Smartsheet. User training and platform adoption support.</span></p>
+            <div class="timeline-skills">
+                <span class="tag">Smartsheet</span>
+                <span class="tag" data-en="Process automation" data-es="Automatización de procesos">Process automation</span>
+                <span class="tag">Bridge by Smartsheet</span>
+                <span class="tag">Dashboards &amp; KPIs</span>
+                <span class="tag">Scrum / Kanban</span>
+                <span class="tag" data-en="Consulting" data-es="Consultoría">Consulting</span>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Co-Manager · <span data-en="Training &amp; Development · Recruitment Coordinator" data-es="Formación y Desarrollo · Coordinador de Selección">Training &amp; Development · Recruitment Coordinator</span></h3>
+            <p class="timeline-date">DO &amp; CO AG · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
+            <p class="timeline-date">📅 <span data-en="March 2021 – August 2023 · 2 years 6 months" data-es="Marzo 2021 – Agosto 2023 · 2 años 6 meses">March 2021 – August 2023 · 2 years 6 months</span></p>
+            <p class="timeline-date">📍 Madrid / Vienna / Paris / Qatar / Silverstone / Monza</p>
+            <p><span data-en="Team management at high-profile international events: F1 (Silverstone, Monza, Vienna, Saudi Arabia, Monaco), FIFA World Cup Qatar 2022, UEFA Euro 2021, ATP Masters Madrid &amp; Vienna, UEFA Champions League Finals Paris &amp; Istanbul. Learning &amp; Development Manager and Recruitment Coordinator focused on team-building and rapid learning environments." data-es="Gestión de equipos en eventos internacionales de alto nivel: F1 (Silverstone, Monza, Viena, Arabia Saudí, Mónaco), Mundial Qatar 2022, Eurocopa 2021, ATP Masters Madrid y Viena, Finales UEFA Champions League París e Estambul. Learning &amp; Development Manager y Coordinador de Selección con enfoque en team-building y aprendizaje rápido.">Team management at high-profile international events: F1 (Silverstone, Monza, Vienna, Saudi Arabia, Monaco), FIFA World Cup Qatar 2022, UEFA Euro 2021, ATP Masters Madrid &amp; Vienna, UEFA Champions League Finals Paris &amp; Istanbul. Learning &amp; Development Manager and Recruitment Coordinator focused on team-building and rapid learning environments.</span></p>
+            <div class="timeline-skills">
+                <span class="tag" data-en="Team management" data-es="Gestión de equipos">Team management</span>
+                <span class="tag" data-en="Event operations" data-es="Gestión de eventos">Event operations</span>
+                <span class="tag" data-en="Foreign languages" data-es="Idiomas extranjeros">Foreign languages</span>
+                <span class="tag" data-en="Performance evaluation" data-es="Evaluación del rendimiento">Performance evaluation</span>
+                <span class="tag" data-en="Leadership" data-es="Liderazgo">Leadership</span>
+                <span class="tag" data-en="Crisis management" data-es="Gestión de crisis">Crisis management</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <h2 data-en="Education &amp; Certifications" data-es="Formación y Certificaciones">Education &amp; Certifications</h2>
+    <div class="education-grid">
+
+        <div class="education-card">
+            <h3>🛡️ <span data-en="Master's in Cybersecurity" data-es="Máster en Ciberseguridad">Master's in Cybersecurity</span></h3>
+            <p><strong style="color:var(--primary-color)">IMMUNE Technology Institute × Universidad Nebrija × Banco Santander</strong></p>
+            <p>Oct 2025 – Oct 2026 · <strong style="color:var(--primary-color)"><span data-en="GPA 9.5/10" data-es="Nota media 9.5/10">GPA 9.5/10</span></strong> — <span data-en="Pending Final Thesis" data-es="Pendiente del Trabajo Final de Máster">Pending Final Thesis</span></p>
+            <p><span data-en="Digital Forensics · System Hardening · Cybersecurity &amp; Cyber Threats · Cryptography · Ethical Hacking &amp; OSINT · Malware Analysis · Incident Response · Threat Hunting &amp; Threat Intelligence · Risk Management (ISO 27001, ENS, GDPR)" data-es="Análisis Forense · Bastionado · Ciberseguridad y Ciberamenazas · Criptografía · Hacking Ético y OSINT · Análisis de Malware · Respuesta a Incidentes · Threat Hunting e Inteligencia de Amenazas · Gestión de Riesgos (ISO 27001, ENS, RGPD)">Digital Forensics · System Hardening · Cybersecurity &amp; Cyber Threats · Cryptography · Ethical Hacking &amp; OSINT · Malware Analysis · Incident Response · Threat Hunting &amp; Threat Intelligence · Risk Management (ISO 27001, ENS, GDPR)</span></p>
+        </div>
+
+        <div class="education-card">
+            <h3>🎓 DAM — <span data-en="Higher Technician in Multiplatform Application Development" data-es="Técnico Superior en Desarrollo de Aplicaciones Multiplataforma">Higher Technician in Multiplatform Application Development</span></h3>
+            <p><strong style="color:var(--primary-color)">CESUR Madrid</strong></p>
+            <p><span data-en="Official qualification in software development, OOP, databases, systems administration." data-es="Formación oficial en desarrollo de software, POO, bases de datos, administración de sistemas.">Official qualification in software development, OOP, databases, systems administration.</span></p>
+        </div>
+
+        <div class="education-card" style="border-left-color:#ff6b35;">
+            <h3>🎯 TryHackMe</h3>
+            <p><strong style="color:#ff6b35;">Top 5% Global · 🔥 <span data-en="+215-day streak" data-es="+215 días de racha">+215-day streak</span></strong></p>
+            <p><span data-en="Daily practice in pentesting labs, CTFs, malware analysis and defence. Consistent hands-on learning." data-es="Práctica diaria en laboratorios de pentesting, CTFs, análisis de malware y defensa. Aprendizaje continuo y constante.">Daily practice in pentesting labs, CTFs, malware analysis and defence. Consistent hands-on learning.</span></p>
+            <p style="margin-top:10px;">
+                <a href="https://tryhackme.com/p/PYNS" target="_blank" style="color:#ff6b35;text-decoration:none;font-weight:600;border:1px solid #ff6b35;padding:5px 12px;border-radius:5px;transition:all 0.3s ease;"
+                   onmouseover="this.style.background='rgba(255,107,53,0.15)'" onmouseout="this.style.background='transparent'"
+                   data-en="View THM profile →" data-es="Ver perfil THM →">View THM profile →</a>
+            </p>
+        </div>
+
+        <div class="education-card">
+            <h3>📘 Security Analyst Path | THM</h3>
+            <p>Security Analyst Level 1 (SAL1)</p>
+            <p>SOC Level 1 &amp; SOC Level 2</p>
+            <p>Advanced Endpoint Investigations</p>
+        </div>
+
+        <div class="education-card">
+            <h3>🎯 Penetration Tester Path | THM</h3>
+            <p>Jr Penetration Tester (PT1)</p>
+            <p>Web Application Pentesting</p>
+            <p>Web Application Red Teaming</p>
+            <p>Red Teaming</p>
+        </div>
+
+        <div class="education-card">
+            <h3>📜 <span data-en="In Progress" data-es="En Curso">In Progress</span></h3>
+            <p><strong style="color:var(--primary-color)">Blue Team Level 1 (BTL1)</strong></p>
+            <p><strong style="color:var(--primary-color)">CompTIA Security+</strong></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 data-en="Contact" data-es="Contacto">Contact</h2>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <a href="mailto:miguelrgr.cyber@gmail.com">miguelrgr.cyber@gmail.com</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/miguel-reguero/" target="_blank">linkedin.com/in/miguel-reguero</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">💻</div>
+            <h3>GitHub</h3>
+            <a href="https://github.com/Miguel-R13" target="_blank">github.com/Miguel-R13</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">🎯</div>
+            <h3>TryHackMe</h3>
+            <a href="https://tryhackme.com/p/PYNS" target="_blank">tryhackme.com/p/PYNS</a>
+            <p style="margin-top:8px;font-size:0.85rem;color:var(--primary-color);font-weight:600;">Top 5% Global · 🔥 +215 <span data-en="days" data-es="días">days</span></p>
+        </div>
+    </div>
+</section>
 
 </div>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 Miguel Reguero | Blue Team · SOC Analyst · DFIR</p>
+    <p>&copy; 2026 Miguel Reguero | <span data-en="Blue Team · SOC Analyst · DFIR" data-es="Blue Team · SOC Analyst · DFIR">Blue Team · SOC Analyst · DFIR</span></p>
 </footer>
 
-<!-- ========== SCRIPTS ========== -->
+<!-- SCRIPTS -->
 <script>
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+// ── LANG SYSTEM ──────────────────────────────────────────────
+let currentLang = 'en';
+
+function toggleLang() {
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    applyLang();
+}
+
+function applyLang() {
+    const btn = document.getElementById('langToggle');
+    btn.textContent = currentLang === 'en' ? '🌐 ES' : '🌐 EN';
+
+    // Elements with data-en / data-es on TEXT content
+    document.querySelectorAll('[data-en][data-es]').forEach(el => {
+        // skip elements that use innerHTML (handled below)
+        if (el.dataset.isHtml) return;
+        el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
     });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.project-card, .skill-category, .timeline-item, .education-card, .contact-card, .about-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+    // Elements where the translation contains HTML (project descriptions, etc.)
+    document.querySelectorAll('span[data-en][data-es], p[data-en][data-es]').forEach(el => {
+        const val = currentLang === 'en' ? el.dataset.en : el.dataset.es;
+        if (val && (val.includes('<') || val.includes('&'))) {
+            el.innerHTML = val;
+        } else if (val) {
+            el.textContent = val;
+        }
     });
+
+    // About section: swap cards
+    document.getElementById('about-card-en').style.display = currentLang === 'en' ? '' : 'none';
+    document.getElementById('about-card-es').style.display = currentLang === 'es' ? '' : 'none';
+
+    // Terminal
+    document.querySelectorAll('.hero-role,.hero-degree,.hero-thm').forEach(el => {
+        if (el.dataset.en && el.dataset.es) {
+            el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
+        }
+    });
+
+    // <html> lang attribute
+    document.documentElement.lang = currentLang;
+}
+
+// ── SMOOTH SCROLL ─────────────────────────────────────────────
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.project-card,.skill-category,.timeline-item,.education-card,.contact-card,.about-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+});
 </script>
 
 <script>
+// ── NETWORK CANVAS ────────────────────────────────────────────
 const canvas = document.getElementById('network-canvas');
 const ctx = canvas.getContext('2d');
-
 function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 resize();
 window.addEventListener('resize', resize);
-
 const labels = ['SOC','SIEM','MITRE','IOC','DNS','TLS','EDR','OSINT','CTI','DFIR','XDR','ATT&CK'];
 const nodes = [];
-
 for (let i = 0; i < 45; i++) {
-    nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.08,
-        vy: (Math.random() - 0.5) * 0.08,
-        label: Math.random() > 0.9 ? labels[Math.floor(Math.random() * labels.length)] : ''
-    });
+    nodes.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-0.5)*0.08, vy:(Math.random()-0.5)*0.08, label:Math.random()>0.9?labels[Math.floor(Math.random()*labels.length)]:'' });
 }
-
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-        for (let j = i + 1; j < nodes.length; j++) {
-            const m = nodes[j];
-            const dx = n.x - m.x, dy = n.y - m.y;
-            const d = Math.sqrt(dx*dx + dy*dy);
-            if (d < 180) {
-                ctx.strokeStyle = 'rgba(0,255,136,.06)';
-                ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
-            }
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for (let i=0;i<nodes.length;i++) {
+        const n=nodes[i];
+        n.x+=n.vx; n.y+=n.vy;
+        if(n.x<0||n.x>canvas.width)n.vx*=-1;
+        if(n.y<0||n.y>canvas.height)n.vy*=-1;
+        for (let j=i+1;j<nodes.length;j++) {
+            const m=nodes[j],dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);
+            if(d<180){ctx.strokeStyle='rgba(0,255,136,.06)';ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}
         }
-        ctx.fillStyle = 'rgba(0,255,136,.25)';
-        ctx.beginPath(); ctx.arc(n.x, n.y, 2, 0, Math.PI*2); ctx.fill();
-        if (n.label) {
-            ctx.fillStyle = 'rgba(0,255,136,.15)';
-            ctx.font = '11px JetBrains Mono';
-            ctx.fillText(n.label, n.x+8, n.y-8);
-        }
+        ctx.fillStyle='rgba(0,255,136,.25)';ctx.beginPath();ctx.arc(n.x,n.y,2,0,Math.PI*2);ctx.fill();
+        if(n.label){ctx.fillStyle='rgba(0,255,136,.15)';ctx.font='11px JetBrains Mono';ctx.fillText(n.label,n.x+8,n.y-8);}
     }
     requestAnimationFrame(animate);
 }
 animate();
-
-window.addEventListener('mousemove', e => { window.__mouseX = e.clientX; window.__mouseY = e.clientY; });
-window.addEventListener('scroll', () => { window.__scrollY = window.scrollY; });
-
-setInterval(() => {
-    nodes.forEach(n => {
-        if (Math.random() > 0.985) n.label = labels[Math.floor(Math.random() * labels.length)];
-        if (Math.random() > 0.997) n.label = '';
-    });
-}, 1200);
-
-function enhancedAnimate() {
-    for (const n of nodes) {
-        const mx = (window.__mouseX || 0) - n.x;
-        const my = (window.__mouseY || 0) - n.y;
-        const dist = Math.sqrt(mx*mx + my*my);
-        if (dist < 180) { n.x += mx*0.00015; n.y += my*0.00015; }
-        n.y += ((window.__scrollY || 0) * 0.00002);
-    }
+window.addEventListener('mousemove',e=>{window.__mouseX=e.clientX;window.__mouseY=e.clientY;});
+window.addEventListener('scroll',()=>{window.__scrollY=window.scrollY;});
+setInterval(()=>{nodes.forEach(n=>{if(Math.random()>0.985)n.label=labels[Math.floor(Math.random()*labels.length)];if(Math.random()>0.997)n.label='';});},1200);
+function enhancedAnimate(){
+    for(const n of nodes){const mx=(window.__mouseX||0)-n.x,my=(window.__mouseY||0)-n.y,dist=Math.sqrt(mx*mx+my*my);if(dist<180){n.x+=mx*0.00015;n.y+=my*0.00015;}n.y+=((window.__scrollY||0)*0.00002);}
     requestAnimationFrame(enhancedAnimate);
 }
 enhancedAnimate();
