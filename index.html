@@ -16,19 +16,16 @@
             --transition: all 0.3s ease;
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--dark-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-
         /* HEADER */
         header { background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1f3a 100%); padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
         header::before { content: ''; position: absolute; top:0;left:0;right:0;bottom:0; background: repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(0,255,136,0.03) 2px,rgba(0,255,136,0.03) 4px); animation: scan 8s linear infinite; }
         @keyframes scan { 0%{transform:translateX(0)} 100%{transform:translateX(50px)} }
-
         /* NAV */
         nav { background: var(--card-bg); padding: 15px 0; position: sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.5); }
         nav ul { display:flex; justify-content:center; flex-wrap:wrap; list-style:none; gap:30px; padding:0 20px; align-items:center; }
         nav a { color:var(--text-primary); text-decoration:none; font-weight:500; transition:var(--transition); position:relative; }
         nav a::after { content:''; position:absolute; bottom:-5px;left:0; width:0;height:2px; background:var(--primary-color); transition:var(--transition); }
         nav a:hover::after { width:100%; }
-
         /* LANG TOGGLE BUTTON */
         .lang-btn {
             background: transparent;
@@ -44,20 +41,17 @@
             letter-spacing: 0.05em;
         }
         .lang-btn:hover { background: rgba(0,255,136,0.12); box-shadow: 0 0 12px rgba(0,255,136,0.3); transform: scale(1.05); }
-
         /* GENERAL */
         .container { max-width:1200px; margin:0 auto; padding:80px 20px; }
         section { margin-bottom:80px; }
         h2 { font-size:2.5rem; margin-bottom:40px; color:var(--primary-color); position:relative; display:inline-block; }
         h2::after { content:''; position:absolute; bottom:-10px;left:0; width:60%;height:3px; background:linear-gradient(90deg,var(--primary-color),transparent); }
-
         /* ABOUT */
         .about-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
         .about-card { background:var(--card-bg); padding:30px; border-radius:10px; border-left:4px solid var(--primary-color); transition:var(--transition); }
         .about-card:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,255,136,0.2); }
         .about-card h3 { color:var(--primary-color); margin-bottom:15px; font-size:1.3rem; }
         .about-card p { margin-bottom:12px; color:var(--text-secondary); }
-
         /* SKILLS */
         .skills-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
         .skill-category { background:var(--card-bg); padding:30px; border-radius:10px; border-top:3px solid var(--primary-color); }
@@ -65,8 +59,7 @@
         .skill-item { background:var(--secondary-color); padding:12px 20px; margin:10px 0; border-radius:5px; display:flex; align-items:center; gap:10px; transition:var(--transition); }
         .skill-item:hover { background:rgba(0,255,136,0.1); transform:translateX(5px); }
         .skill-item::before { content:'▸'; color:var(--primary-color); font-weight:bold; }
-
-        /* PROJECTS */
+        /* PROJECTS / WRITE-UPS */
         .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
         .project-card { background:var(--card-bg); border-radius:10px; overflow:hidden; transition:var(--transition); border:1px solid rgba(0,255,136,0.1); display:flex; flex-direction:column; }
         .project-card:hover { transform:translateY(-10px); box-shadow:0 15px 40px rgba(0,255,136,0.3); border-color:var(--primary-color); }
@@ -79,8 +72,9 @@
         .project-links { display:flex; gap:15px; flex-wrap:wrap; }
         .btn { display:inline-block; padding:10px 20px; background:var(--primary-color); color:var(--dark-bg); text-decoration:none; border-radius:5px; font-weight:600; transition:var(--transition); }
         .btn:hover { background:#00cc6f; transform:scale(1.05); box-shadow:0 5px 15px rgba(0,255,136,0.4); }
+        .btn-outline { display:inline-block; padding:10px 20px; background:transparent; color:var(--primary-color); text-decoration:none; border-radius:5px; font-weight:600; border:2px solid var(--primary-color); transition:var(--transition); }
+        .btn-outline:hover { background:rgba(0,255,136,0.1); transform:scale(1.05); }
         .project-badge { display:inline-block; background:rgba(0,255,136,0.15); color:var(--primary-color); border:1px solid rgba(0,255,136,0.4); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:600; margin-top:8px; letter-spacing:0.05em; }
-
         /* TIMELINE */
         .timeline { position:relative; padding-left:50px; }
         .timeline::before { content:''; position:absolute; left:20px;top:0;bottom:0; width:2px; background:var(--primary-color); }
@@ -91,14 +85,12 @@
         .timeline-date { color:var(--text-secondary); font-size:0.9rem; margin-bottom:10px; }
         .timeline-skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:15px; }
         .tag { background:rgba(0,255,136,0.1); color:var(--primary-color); padding:5px 12px; border-radius:15px; font-size:0.85rem; border:1px solid rgba(0,255,136,0.3); }
-
         /* EDUCATION */
         .education-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; }
         .education-card { background:var(--card-bg); padding:25px; border-radius:10px; border-left:4px solid var(--primary-color); transition:var(--transition); }
         .education-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,255,136,0.2); }
         .education-card h3 { color:var(--primary-color); margin-bottom:10px; }
         .education-card p { color:var(--text-secondary); font-size:0.95rem; margin-top:6px; }
-
         /* CONTACT */
         .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; margin-top:40px; }
         .contact-card { background:var(--card-bg); padding:30px; border-radius:10px; text-align:center; transition:var(--transition); border:2px solid transparent; }
@@ -107,13 +99,10 @@
         .contact-card h3 { color:var(--primary-color); margin-bottom:10px; }
         .contact-card a { color:var(--text-secondary); text-decoration:none; transition:var(--transition); }
         .contact-card a:hover { color:var(--primary-color); }
-
         /* FOOTER */
         footer { background:var(--secondary-color); padding:30px 20px; text-align:center; color:var(--text-secondary); }
-
         /* RESPONSIVE */
         @media(max-width:768px) { h2{font-size:2rem;} nav ul{gap:15px;} .container{padding:40px 15px;} .timeline{padding-left:30px;} .timeline-item::before{left:-28px;} }
-
         /* TERMINAL */
         #network-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
         .hero-terminal { width:min(680px,90vw); background:rgba(11,15,20,.92); border:1px solid rgba(0,255,136,.15); border-radius:14px; overflow:hidden; backdrop-filter:blur(8px); box-shadow:0 0 40px rgba(0,255,136,.08); font-family:'JetBrains Mono',monospace; margin:auto; }
@@ -135,7 +124,6 @@
 </head>
 <body>
 <canvas id="network-canvas"></canvas>
-
 <!-- HEADER -->
 <header>
     <div class="hero-terminal">
@@ -144,29 +132,27 @@
             <div class="prompt">root@root:~$ whoami</div>
             <div class="hero-name">Miguel Reguero</div>
             <div class="hero-role" data-en="Blue Team · SOC Analyst · DFIR" data-es="Blue Team · SOC Analyst · DFIR">Blue Team · SOC Analyst · DFIR</div>
-            <div class="hero-degree" data-en="Master's in Cybersecurity | GPA 9.5/10" data-es="Máster en Ciberseguridad | Nota media 9.5/10">Master's in Cybersecurity — GPA 9.5/10</div>
+            <div class="hero-degree" data-en="Master's in Cybersecurity | GPA 9.5/10" data-es="Máster en Ciberseguridad | Nota media 9.5/10">Máster en Ciberseguridad | Nota media 9.5/10</div>
             <div class="hero-school">IMMUNE × Banco Santander × Universidad Nebrija</div>
-            <div class="hero-thm" data-en="TryHackMe Top 5% Global 🔥 +215-day streak" data-es="TryHackMe Top 5% Mundial 🔥 +215 días de racha">TryHackMe Top 5% Global 🔥 +215-day streak</div>
+            <div class="hero-thm" data-en="TryHackMe Top 5% Global 🔥 +250-day streak" data-es="TryHackMe Top 5% Mundial 🔥 +250 días de racha">TryHackMe Top 5% Mundial 🔥 +250 días de racha</div>
             <div class="prompt">root@root:~$ <span class="cursor">█</span></div>
         </div>
     </div>
 </header>
-
 <!-- NAV -->
 <nav>
     <ul>
         <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
         <li><a href="#skills" data-en="Skills" data-es="Habilidades">Skills</a></li>
         <li><a href="#projects" data-en="Projects" data-es="Proyectos">Projects</a></li>
+        <li><a href="#writeups" data-en="Write-Ups" data-es="Write-Ups">Write-Ups</a></li>
         <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
         <li><a href="#education" data-en="Education" data-es="Educación">Education</a></li>
         <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
-        <li><button class="lang-btn" id="langToggle" onclick="toggleLang()">🌐 ES</button></li>
+        <li><button class="lang-btn" id="langToggle" onclick="toggleLang()">🇬🇧 EN</button></li>
     </ul>
 </nav>
-
 <div class="container">
-
 <!-- ABOUT -->
 <section id="about">
     <h2 data-en="About Me" data-es="Sobre mí">About Me</h2>
@@ -175,17 +161,16 @@
             <h3>🇪🇸 Español</h3>
             <p>Profesional de ciberseguridad con foco en <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Cursando un Máster en Ciberseguridad en IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) con media de <strong style="color:var(--primary-color)">9.5/10</strong> a falta de entregar el TFM.</p>
             <p>Experiencia práctica construyendo entornos SOC de nivel Enterprise desde 0: Elastic SIEM, EDR con Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management y NG Firewall en Sophos XG.</p>
-            <p>Proyectos documentados públicamente en GitHub y LinkedIn. <strong style="color:var(--primary-color)">Top 5% mundial en TryHackMe · racha activa de +215 días.</strong></p>
+            <p>Proyectos documentados públicamente en GitHub y LinkedIn. <strong style="color:var(--primary-color)">Top 5% mundial en TryHackMe · racha activa de +250 días.</strong></p>
         </div>
         <div class="about-card" id="about-card-en">
             <h3>🇬🇧 English</h3>
             <p>Cybersecurity professional focused on <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Completing a Master's in Cybersecurity at IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) with a GPA of <strong style="color:var(--primary-color)">9.5/10</strong>, pending final thesis.</p>
             <p>Hands-on experience building enterprise-grade SOC environments from scratch: Elastic SIEM, EDR with Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management and NG Firewall on Sophos XG.</p>
-            <p>Projects publicly documented on GitHub and LinkedIn. <strong style="color:var(--primary-color)">Top 5% worldwide on TryHackMe · +215-day active streak.</strong></p>
+            <p>Projects publicly documented on GitHub and LinkedIn. <strong style="color:var(--primary-color)">Top 5% worldwide on TryHackMe · +250-day active streak.</strong></p>
         </div>
     </div>
 </section>
-
 <!-- SKILLS -->
 <section id="skills">
     <h2 data-en="Skills" data-es="Habilidades">Skills</h2>
@@ -263,12 +248,10 @@
         </div>
     </div>
 </section>
-
 <!-- PROJECTS -->
 <section id="projects">
     <h2 data-en="Projects" data-es="Proyectos">Projects</h2>
     <div class="projects-grid">
-
         <div class="project-card">
             <div class="project-header">
                 <h3>🛰️ SOC Lab: Elastic Security Threat Detection Platform</h3>
@@ -280,7 +263,6 @@
                 <div class="project-links"><a href="https://github.com/Miguel-R13/SOC-Lab-Elastic-Security-Threat-Detection-Platform" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-
         <div class="project-card">
             <div class="project-header">
                 <h3>🚨 Incident Response Lab: Elastic + IRIS</h3>
@@ -289,10 +271,9 @@
             <div class="project-body">
                 <p><span data-en='Full incident lifecycle with <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detection → triage → investigation → containment → closure. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> measured and documented throughout. Covers realistic Blue Team workflows end to end.' data-es='Ciclo de vida completo del incidente con <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detección → triaje → investigación → contención → cierre. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> medidos y documentados. Cubre flujos de trabajo reales de Blue Team de principio a fin.'>Full incident lifecycle with <strong style="color:var(--primary-color)">Elastic Security + IRIS</strong>: detection → triage → investigation → containment → closure. <strong style="color:var(--primary-color)">MTTD/MTTR</strong> measured and documented throughout. Covers realistic Blue Team workflows end to end.</span></p>
                 <div class="project-tags"><span class="project-tag">Elastic Security</span><span class="project-tag">IRIS</span><span class="project-tag">Incident Response</span><span class="project-tag">MTTD / MTTR</span><span class="project-tag">Triage</span><span class="project-tag">DFIR</span><span class="project-tag">Blue Team</span></div>
-                <div class="project-links"><a href="https://github.com/Miguel-R13" target="_blank" class="btn">GitHub →</a></div>
+                <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps/tree/master/03-IR-Respuesta-Incidentes-Elastic" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-
         <div class="project-card">
             <div class="project-header">
                 <h3>🔐 Sophos XG NGFW · <span data-en="Secure Network Architecture" data-es="Arquitectura de Red Segura">Secure Network Architecture</span></h3>
@@ -304,7 +285,6 @@
                 <div class="project-links"><a href="https://github.com/Miguel-R13/Sophos-NGFW-Lab" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-
         <div class="project-card">
             <div class="project-header">
                 <h3>🛡️ <span data-en="Malware Analysis · Spear Phishing &amp; VBA Downloader" data-es="Análisis de Malware · Spear Phishing y VBA Downloader">Malware Analysis · Spear Phishing &amp; VBA Downloader</span></h3>
@@ -316,7 +296,6 @@
                 <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-
         <div class="project-card">
             <div class="project-header">
                 <h3>🍯 HoneyPot · <span data-en="Threat Detection &amp; Analysis" data-es="Detección y Análisis de Amenazas">Threat Detection &amp; Analysis</span></h3>
@@ -328,15 +307,89 @@
                 <div class="project-links"><span style="color:var(--text-secondary);font-size:0.9rem;align-self:center;" data-en="🔧 Repository coming soon" data-es="🔧 Repositorio próximamente">🔧 Repository coming soon</span></div>
             </div>
         </div>
-
     </div>
 </section>
-
+<!-- WRITE-UPS -->
+<section id="writeups">
+    <h2 data-en="Labs &amp; Write-Ups" data-es="Labs y Write-Ups">Labs &amp; Write-Ups</h2>
+    <p style="color:var(--text-secondary);margin-bottom:12px;font-size:1.05rem;">
+        <span data-en="Practical Blue Team labs documented during the Master's in Cybersecurity (IMMUNE × Universidad Nebrija × Banco Santander). Each write-up includes methodology, evidence and technical conclusions." data-es="Laboratorios prácticos de Blue Team documentados durante el Máster en Ciberseguridad (IMMUNE × Universidad Nebrija × Banco Santander). Cada write-up incluye metodología, evidencias y conclusiones técnicas.">Practical Blue Team labs documented during the Master's in Cybersecurity (IMMUNE × Universidad Nebrija × Banco Santander). Each write-up includes methodology, evidence and technical conclusions.</span>
+    </p>
+    <p style="margin-bottom:35px;">
+        <a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps" target="_blank" class="btn-outline">
+            <span data-en="🔗 Full repository on GitHub" data-es="🔗 Repositorio completo en GitHub">🔗 Full repository on GitHub</span>
+        </a>
+    </p>
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🔍 Lab 01 · DFIR <span data-en="Forensics" data-es="Forense">Forensics</span></h3>
+                <span class="project-badge">🔵 Write-Up</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Forensic analysis of a pendrive in a simulated drug trafficking case. Recovery of deleted files, identification of file type spoofing via magic bytes, metadata analysis and full chain of custody reconstruction.' data-es='Análisis forense de un pendrive en un caso simulado de narcotráfico. Recuperación de archivos eliminados, identificación de ofuscación de tipos de archivo mediante magic bytes, análisis de metadatos y reconstrucción de la cadena de evidencias.'>Forensic analysis of a pendrive in a simulated drug trafficking case. Recovery of deleted files, identification of file type spoofing via magic bytes, metadata analysis and full chain of custody reconstruction.</span></p>
+                <div class="project-tags">
+                    <span class="project-tag">FTK Imager</span>
+                    <span class="project-tag">Kali Purple</span>
+                    <span class="project-tag">Thunderbird</span>
+                    <span class="project-tag">DFIR</span>
+                    <span class="project-tag">Magic Bytes</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps/tree/master/01-DFIR-Forense-Pendrive-Narcotrafico" target="_blank" class="btn">
+                        <span data-en="GitHub →" data-es="GitHub →">GitHub →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🦠 Lab 02 · <span data-en="Malware Analysis" data-es="Análisis de Malware">Malware Analysis</span></h3>
+                <span class="project-badge">🔵 Write-Up</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Static analysis of a Spear Phishing campaign with a malicious VBA macro. Code extraction and inspection with olevba, downloader behaviour identification and TTP mapping to MITRE ATT&amp;CK.' data-es='Análisis estático de una campaña de Spear Phishing con macro VBA maliciosa. Extracción e inspección del código con olevba, identificación del comportamiento del downloader y mapeo de TTPs al framework MITRE ATT&amp;CK.'>Static analysis of a Spear Phishing campaign with a malicious VBA macro. Code extraction and inspection with olevba, downloader behaviour identification and TTP mapping to MITRE ATT&amp;CK.</span></p>
+                <div class="project-tags">
+                    <span class="project-tag">REMnux</span>
+                    <span class="project-tag">olevba</span>
+                    <span class="project-tag">VBA Analysis</span>
+                    <span class="project-tag">MITRE ATT&CK</span>
+                    <span class="project-tag">Static Analysis</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">
+                        <span data-en="GitHub →" data-es="GitHub →">GitHub →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-header">
+                <h3>🚨 Lab 03 · Incident Response</h3>
+                <span class="project-badge">🔵 Write-Up</span>
+            </div>
+            <div class="project-body">
+                <p><span data-en='Simulated real incident response with over 5,000 active alerts on shift. Alert triage, event correlation in Elastic, reverse shell detection and full kill chain reconstruction. Case documented in IRIS and mapped to MITRE ATT&amp;CK.' data-es='Respuesta a incidente real simulado con más de 5.000 alertas activas en turno. Triaje de alertas, correlación de eventos en Elastic, detección de reverse shell y reconstrucción del kill chain completo. Caso documentado en IRIS y mapeado a MITRE ATT&amp;CK.'>Simulated real incident response with over 5,000 active alerts on shift. Alert triage, event correlation in Elastic, reverse shell detection and full kill chain reconstruction. Case documented in IRIS and mapped to MITRE ATT&amp;CK.</span></p>
+                <div class="project-tags">
+                    <span class="project-tag">Elastic Security</span>
+                    <span class="project-tag">Kibana</span>
+                    <span class="project-tag">IRIS</span>
+                    <span class="project-tag">MITRE ATT&CK</span>
+                    <span class="project-tag">Kill Chain</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps/tree/master/03-IR-Respuesta-Incidentes-Elastic" target="_blank" class="btn">
+                        <span data-en="GitHub →" data-es="GitHub →">GitHub →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- EXPERIENCE -->
 <section id="experience">
     <h2 data-en="Experience" data-es="Experiencia">Experience</h2>
     <div class="timeline">
-
         <div class="timeline-item">
             <h3>Junior Solution Engineer | Smartsheet Consultant &amp; Dev</h3>
             <p class="timeline-date">Uniendo Nodos · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
@@ -352,7 +405,6 @@
                 <span class="tag" data-en="Consulting" data-es="Consultoría">Consulting</span>
             </div>
         </div>
-
         <div class="timeline-item">
             <h3>Co-Manager · <span data-en="Training &amp; Development · Recruitment Coordinator" data-es="Formación y Desarrollo · Coordinador de Selección">Training &amp; Development · Recruitment Coordinator</span></h3>
             <p class="timeline-date">DO &amp; CO AG · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
@@ -368,31 +420,26 @@
                 <span class="tag" data-en="Crisis management" data-es="Gestión de crisis">Crisis management</span>
             </div>
         </div>
-
     </div>
 </section>
-
 <!-- EDUCATION -->
 <section id="education">
     <h2 data-en="Education &amp; Certifications" data-es="Formación y Certificaciones">Education &amp; Certifications</h2>
     <div class="education-grid">
-
         <div class="education-card">
             <h3>🛡️ <span data-en="Master's in Cybersecurity" data-es="Máster en Ciberseguridad">Master's in Cybersecurity</span></h3>
             <p><strong style="color:var(--primary-color)">IMMUNE Technology Institute × Universidad Nebrija × Banco Santander</strong></p>
             <p>Oct 2025 | Oct 2026 · <strong style="color:var(--primary-color)"><span data-en="GPA 9.5/10" data-es="Nota media 9.5/10">GPA 9.5/10</span></strong> | <span data-en="Pending Final Thesis" data-es="Pendiente del Trabajo Final de Máster">Pending Final Thesis</span></p>
             <p><span data-en="Digital Forensics · System Hardening · Cybersecurity &amp; Cyber Threats · Cryptography · Ethical Hacking &amp; OSINT · Malware Analysis · Incident Response · Threat Hunting &amp; Threat Intelligence · Risk Management (ISO 27001, ENS, GDPR)" data-es="Análisis Forense · Bastionado · Ciberseguridad y Ciberamenazas · Criptografía · Hacking Ético y OSINT · Análisis de Malware · Respuesta a Incidentes · Threat Hunting e Inteligencia de Amenazas · Gestión de Riesgos (ISO 27001, ENS, RGPD)">Digital Forensics · System Hardening · Cybersecurity &amp; Cyber Threats · Cryptography · Ethical Hacking &amp; OSINT · Malware Analysis · Incident Response · Threat Hunting &amp; Threat Intelligence · Risk Management (ISO 27001, ENS, GDPR)</span></p>
         </div>
-
         <div class="education-card">
             <h3>🎓 DAM | <span data-en="Higher Technician in Multiplatform Application Development" data-es="Técnico Superior en Desarrollo de Aplicaciones Multiplataforma">Higher Technician in Multiplatform Application Development</span></h3>
             <p><strong style="color:var(--primary-color)">CESUR Madrid</strong></p>
             <p><span data-en="Official qualification in software development, OOP, databases, systems administration." data-es="Formación oficial en desarrollo de software, POO, bases de datos, administración de sistemas.">Official qualification in software development, OOP, databases, systems administration.</span></p>
         </div>
-
         <div class="education-card" style="border-left-color:#ff6b35;">
             <h3>🎯 TryHackMe</h3>
-            <p><strong style="color:#ff6b35;">Top 5% Global · 🔥 <span data-en="+215-day streak" data-es="+215 días de racha">+215-day streak</span></strong></p>
+            <p><strong style="color:#ff6b35;">Top 5% Global · 🔥 <span data-en="+250-day streak" data-es="+250 días de racha">+250 días de racha</span></strong></p>
             <p><span data-en="Daily practice in pentesting labs, CTFs, malware analysis and defence. Consistent hands-on learning." data-es="Práctica diaria en laboratorios de pentesting, CTFs, análisis de malware y defensa. Aprendizaje continuo y constante.">Daily practice in pentesting labs, CTFs, malware analysis and defence. Consistent hands-on learning.</span></p>
             <p style="margin-top:10px;">
                 <a href="https://tryhackme.com/p/PYNS" target="_blank" style="color:#ff6b35;text-decoration:none;font-weight:600;border:1px solid #ff6b35;padding:5px 12px;border-radius:5px;transition:all 0.3s ease;"
@@ -400,14 +447,12 @@
                    data-en="View THM profile →" data-es="Ver perfil THM →">View THM profile →</a>
             </p>
         </div>
-
         <div class="education-card">
             <h3>📘 Security Analyst Path | THM</h3>
             <p>Security Analyst Level 1 (SAL1)</p>
             <p>SOC Level 1 &amp; SOC Level 2</p>
             <p>Advanced Endpoint Investigations</p>
         </div>
-
         <div class="education-card">
             <h3>🎯 Penetration Tester Path | THM</h3>
             <p>Jr Penetration Tester (PT1)</p>
@@ -415,16 +460,13 @@
             <p>Web Application Red Teaming</p>
             <p>Red Teaming</p>
         </div>
-
         <div class="education-card">
             <h3>📜 <span data-en="In Progress" data-es="En Curso">In Progress</span></h3>
             <p><strong style="color:var(--primary-color)">Blue Team Level 1 (BTL1)</strong></p>
             <p><strong style="color:var(--primary-color)">CompTIA Security+</strong></p>
         </div>
-
     </div>
 </section>
-
 <!-- CONTACT -->
 <section id="contact">
     <h2 data-en="Contact" data-es="Contacto">Contact</h2>
@@ -448,40 +490,30 @@
             <div class="contact-icon">🎯</div>
             <h3>TryHackMe</h3>
             <a href="https://tryhackme.com/p/PYNS" target="_blank">tryhackme.com/p/PYNS</a>
-            <p style="margin-top:8px;font-size:0.85rem;color:var(--primary-color);font-weight:600;">Top 5% Global · 🔥 +215 <span data-en="days" data-es="días">days</span></p>
+            <p style="margin-top:8px;font-size:0.85rem;color:var(--primary-color);font-weight:600;">Top 5% Global · 🔥 +250 <span data-en="days" data-es="días">días</span></p>
         </div>
     </div>
 </section>
-
 </div>
-
 <!-- FOOTER -->
 <footer>
     <p>&copy; 2026 Miguel Reguero | <span data-en="Blue Team · SOC Analyst · DFIR" data-es="Blue Team · SOC Analyst · DFIR">Blue Team · SOC Analyst · DFIR</span></p>
 </footer>
-
 <!-- SCRIPTS -->
 <script>
 // ── LANG SYSTEM ──────────────────────────────────────────────
-let currentLang = 'en';
-
+let currentLang = 'es';
 function toggleLang() {
     currentLang = currentLang === 'en' ? 'es' : 'en';
     applyLang();
 }
-
 function applyLang() {
     const btn = document.getElementById('langToggle');
-    btn.textContent = currentLang === 'en' ? '🌐 ES' : '🌐 EN';
-
-    // Elements with data-en / data-es on TEXT content
+    btn.textContent = currentLang === 'en' ? '🇪🇸 ES' : '🇬🇧 EN';
     document.querySelectorAll('[data-en][data-es]').forEach(el => {
-        // skip elements that use innerHTML (handled below)
         if (el.dataset.isHtml) return;
         el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
     });
-
-    // Elements where the translation contains HTML (project descriptions, etc.)
     document.querySelectorAll('span[data-en][data-es], p[data-en][data-es]').forEach(el => {
         const val = currentLang === 'en' ? el.dataset.en : el.dataset.es;
         if (val && (val.includes('<') || val.includes('&'))) {
@@ -490,22 +522,17 @@ function applyLang() {
             el.textContent = val;
         }
     });
-
-    // About section: swap cards
     document.getElementById('about-card-en').style.display = currentLang === 'en' ? '' : 'none';
     document.getElementById('about-card-es').style.display = currentLang === 'es' ? '' : 'none';
-
-    // Terminal
     document.querySelectorAll('.hero-role,.hero-degree,.hero-thm').forEach(el => {
         if (el.dataset.en && el.dataset.es) {
             el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
         }
     });
-
-    // <html> lang attribute
     document.documentElement.lang = currentLang;
 }
-
+// Arrancar en español
+applyLang();
 // ── SMOOTH SCROLL ─────────────────────────────────────────────
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -514,7 +541,6 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
-
 // ── SCROLL ANIMATIONS ─────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -524,7 +550,6 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
 document.querySelectorAll('.project-card,.skill-category,.timeline-item,.education-card,.contact-card,.about-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -532,7 +557,6 @@ document.querySelectorAll('.project-card,.skill-category,.timeline-item,.educati
     observer.observe(el);
 });
 </script>
-
 <script>
 // ── NETWORK CANVAS ────────────────────────────────────────────
 const canvas = document.getElementById('network-canvas');
@@ -571,6 +595,5 @@ function enhancedAnimate(){
 }
 enhancedAnimate();
 </script>
-
 </body>
 </html>
