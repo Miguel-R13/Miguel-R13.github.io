@@ -149,7 +149,7 @@
         <li><a href="#experience" data-en="Experience" data-es="Experiencia">Experience</a></li>
         <li><a href="#education" data-en="Education" data-es="Educación">Education</a></li>
         <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
-        <li><button class="lang-btn" id="langToggle" onclick="toggleLang()">🇬🇧 EN</button></li>
+        <li><button class="lang-btn" id="langToggle" onclick="toggleLang()"><svg width="20" height="13" viewBox="0 0 60 30" style="vertical-align:middle;margin-right:5px;border-radius:1px"><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></svg>EN</button></li>
     </ul>
 </nav>
 <div class="container">
@@ -158,13 +158,13 @@
     <h2 data-en="About Me" data-es="Sobre mí">About Me</h2>
     <div class="about-grid">
         <div class="about-card" id="about-card-es" style="display:none">
-            <h3>🇪🇸 Español</h3>
+            <h3><svg width="20" height="13" viewBox="0 0 60 40" style="vertical-align:middle;margin-right:6px;border-radius:1px"><rect width="60" height="40" fill="#C60B1E"/><rect y="10" width="60" height="20" fill="#FFC400"/></svg>Español</h3>
             <p>Profesional de ciberseguridad con foco en <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Cursando un Máster en Ciberseguridad en IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) con media de <strong style="color:var(--primary-color)">9.5/10</strong> a falta de entregar el TFM.</p>
             <p>Experiencia práctica construyendo entornos SOC de nivel Enterprise desde 0: Elastic SIEM, EDR con Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management y NG Firewall en Sophos XG.</p>
             <p>Proyectos documentados públicamente en GitHub y LinkedIn. <strong style="color:var(--primary-color)">Top 5% mundial en TryHackMe · racha activa de +250 días.</strong></p>
         </div>
         <div class="about-card" id="about-card-en">
-            <h3>🇬🇧 English</h3>
+            <h3><svg width="20" height="13" viewBox="0 0 60 30" style="vertical-align:middle;margin-right:6px;border-radius:1px"><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></svg>English</h3>
             <p>Cybersecurity professional focused on <strong style="color:var(--primary-color)">Blue Team / SOC Analyst / DFIR</strong>. Completing a Master's in Cybersecurity at IMMUNE Technology Institute (Banco Santander + Universidad Nebrija) with a GPA of <strong style="color:var(--primary-color)">9.5/10</strong>, pending final thesis.</p>
             <p>Hands-on experience building enterprise-grade SOC environments from scratch: Elastic SIEM, EDR with Fleet Server, NSM, CTI (MISP + Abuse.ch), ML anomaly detection, IRIS Case Management and NG Firewall on Sophos XG.</p>
             <p>Projects publicly documented on GitHub and LinkedIn. <strong style="color:var(--primary-color)">Top 5% worldwide on TryHackMe · +250-day active streak.</strong></p>
@@ -520,7 +520,9 @@ function toggleLang() {
 }
 function applyLang() {
     const btn = document.getElementById('langToggle');
-    btn.textContent = currentLang === 'en' ? '🇪🇸 ES' : '🇬🇧 EN';
+    const svgGB = '<svg width="20" height="13" viewBox="0 0 60 30" style="vertical-align:middle;margin-right:5px;border-radius:1px"><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></svg>EN';
+    const svgES = '<svg width="20" height="13" viewBox="0 0 60 40" style="vertical-align:middle;margin-right:5px;border-radius:1px"><rect width="60" height="40" fill="#C60B1E"/><rect y="10" width="60" height="20" fill="#FFC400"/></svg>ES';
+    btn.innerHTML = currentLang === 'en' ? svgES : svgGB;
     document.querySelectorAll('[data-en][data-es]').forEach(el => {
         if (el.dataset.isHtml) return;
         el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
