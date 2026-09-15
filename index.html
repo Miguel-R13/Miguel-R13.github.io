@@ -41,14 +41,19 @@
         .skill-item { background:var(--secondary-color); padding:12px 20px; margin:10px 0; border-radius:5px; display:flex; align-items:center; gap:10px; transition:var(--transition); }
         .skill-item:hover { background:rgba(0,255,136,0.1); transform:translateX(5px); }
         .skill-item::before { content:'▸'; color:var(--primary-color); font-weight:bold; }
-        .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:30px; }
+        .projects-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:30px; }
+        @media(max-width:768px) { .projects-grid { grid-template-columns:1fr; } }
         .project-card { background:var(--card-bg); border-radius:10px; overflow:hidden; transition:var(--transition); border:1px solid rgba(0,255,136,0.1); display:flex; flex-direction:column; }
         .project-card:hover { transform:translateY(-10px); box-shadow:0 15px 40px rgba(0,255,136,0.3); border-color:var(--primary-color); }
-        .project-card.featured { border:2px solid var(--primary-color); box-shadow:0 0 30px rgba(0,255,136,0.15); }
+        .project-card.featured { grid-column: 1 / -1; border:2px solid var(--primary-color); box-shadow:0 0 30px rgba(0,255,136,0.15); }
         .project-header { background:linear-gradient(135deg,var(--secondary-color),#1a1f3a); padding:30px; text-align:center; }
         .project-header h3 { color:var(--primary-color); font-size:1.5rem; margin-bottom:10px; }
         .project-body { padding:25px; flex:1; display:flex; flex-direction:column; }
-        .project-body p { color:var(--text-secondary); margin-bottom:20px; flex:1; }
+        .project-body p { color:var(--text-secondary); margin-bottom:15px; }
+        .argos-bullets { list-style:none; margin-bottom:20px; }
+        .argos-bullets li { color:var(--text-secondary); padding:6px 0; padding-left:20px; position:relative; border-bottom:1px solid rgba(255,255,255,0.05); }
+        .argos-bullets li:last-child { border-bottom:none; }
+        .argos-bullets li::before { content:'▸'; color:var(--primary-color); position:absolute; left:0; font-weight:bold; }
         .project-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
         .project-tag { background:rgba(0,255,136,0.08); color:var(--primary-color); padding:4px 10px; border-radius:12px; font-size:0.78rem; border:1px solid rgba(0,255,136,0.25); font-family:'Courier New',monospace; }
         .project-links { display:flex; gap:15px; flex-wrap:wrap; }
@@ -57,10 +62,10 @@
         .btn-outline { display:inline-block; padding:10px 20px; background:transparent; color:var(--primary-color); text-decoration:none; border-radius:5px; font-weight:600; border:2px solid var(--primary-color); transition:var(--transition); }
         .btn-outline:hover { background:rgba(0,255,136,0.1); transform:scale(1.05); }
         .project-badge { display:inline-block; background:rgba(0,255,136,0.15); color:var(--primary-color); border:1px solid rgba(0,255,136,0.4); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:600; margin-top:8px; letter-spacing:0.05em; }
-        .metrics-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; margin:20px 0; }
-        .metric-box { background:rgba(0,255,136,0.05); border:1px solid rgba(0,255,136,0.2); border-radius:8px; padding:15px; text-align:center; }
-        .metric-value { font-size:1.5rem; font-weight:700; color:var(--primary-color); font-family:'JetBrains Mono',monospace; }
-        .metric-label { font-size:0.75rem; color:var(--text-secondary); margin-top:4px; }
+        .metrics-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin:20px 0; }
+        .metric-box { background:rgba(0,255,136,0.05); border:1px solid rgba(0,255,136,0.2); border-radius:8px; padding:14px; text-align:center; }
+        .metric-value { font-size:1.4rem; font-weight:700; color:var(--primary-color); font-family:'JetBrains Mono',monospace; }
+        .metric-label { font-size:0.72rem; color:var(--text-secondary); margin-top:4px; }
         .timeline { position:relative; padding-left:50px; }
         .timeline::before { content:''; position:absolute; left:20px;top:0;bottom:0; width:2px; background:var(--primary-color); }
         .timeline-item { position:relative; margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:10px; transition:var(--transition); }
@@ -164,9 +169,8 @@
         <div class="skill-category">
             <h3>🚨 <span data-en="Incident Response" data-es="Respuesta a Incidentes">Incident Response</span></h3>
             <div class="skill-item">MITRE ATT&CK · Cyber Kill Chain</div>
-            <div class="skill-item"><span data-en="Playbooks · Triage" data-es="Playbooks · Triaje">Playbooks · Triage</span></div>
+            <div class="skill-item"><span data-en="Playbooks · Triage" data-es="Playbooks · Triaje">Playbooks · Triaje</span></div>
             <div class="skill-item">NGFW Sophos XG</div>
-            <div class="skill-item">Wireshark</div>
         </div>
         <div class="skill-category">
             <h3>⚙️ SOAR / <span data-en="Automation" data-es="Automatización">Automatización</span></h3>
@@ -177,6 +181,13 @@
             <div class="skill-item">APIs · Docker</div>
         </div>
         <div class="skill-category">
+            <h3>🌐 <span data-en="Network Tools" data-es="Herramientas de Red">Herramientas de Red</span></h3>
+            <div class="skill-item">Wireshark</div>
+            <div class="skill-item">Suricata IDS/IPS</div>
+            <div class="skill-item">tcpdump</div>
+            <div class="skill-item"><span data-en="Networking: OSI · TCP/IP · DNS · VPN" data-es="Redes: OSI · TCP/IP · DNS · VPN">Redes: OSI · TCP/IP · DNS · VPN</span></div>
+        </div>
+        <div class="skill-category">
             <h3>🔍 CTI / Threat Intel</h3>
             <div class="skill-item">MISP · Abuse.ch (MalwareBazaar, ThreatFox)</div>
             <div class="skill-item">VirusTotal · AbuseIPDB</div>
@@ -184,7 +195,7 @@
             <div class="skill-item">OSINT Framework</div>
         </div>
         <div class="skill-category">
-            <h3>🧬 <span data-en="Malware Analysis &amp; Forensics" data-es="Análisis de Malware y Forense">Malware Analysis &amp; Forensics</span></h3>
+            <h3>🧬 <span data-en="Malware Analysis &amp; Forensics" data-es="Análisis de Malware y Forense">Malware &amp; Forense</span></h3>
             <div class="skill-item">REMnux · FlareVM</div>
             <div class="skill-item">CAPE · Procmon · PEStudio</div>
             <div class="skill-item">Detect-It-Easy · dnSpy · x64dbg</div>
@@ -192,24 +203,23 @@
             <div class="skill-item">CyberChef · Autopsy · Volatility</div>
         </div>
         <div class="skill-category">
-            <h3>🔧 <span data-en="Infrastructure" data-es="Infraestructura">Infrastructure</span></h3>
+            <h3>🔧 <span data-en="Infrastructure" data-es="Infraestructura">Infraestructura</span></h3>
             <div class="skill-item">Linux · Windows</div>
-            <div class="skill-item"><span data-en="Networking: OSI · TCP/IP · DNS · VPN" data-es="Redes: OSI · TCP/IP · DNS · VPN">Networking: OSI · TCP/IP · DNS · VPN</span></div>
             <div class="skill-item">VMware · Hyper-V · Proxmox</div>
             <div class="skill-item">Docker · WireGuard</div>
         </div>
         <div class="skill-category">
-            <h3>⚔️ <span data-en="Offensive Security" data-es="Seguridad Ofensiva">Offensive Security</span></h3>
+            <h3>⚔️ <span data-en="Offensive Security" data-es="Seguridad Ofensiva">Seguridad Ofensiva</span></h3>
             <div class="skill-item">Nmap · Metasploit · Burp Suite</div>
             <div class="skill-item">OWASP Top 10</div>
-            <div class="skill-item"><span data-en="Privilege Escalation (Linux &amp; Windows)" data-es="Escalada de Privilegios (Linux y Windows)">Privilege Escalation (Linux &amp; Windows)</span></div>
+            <div class="skill-item"><span data-en="Privilege Escalation (Linux &amp; Windows)" data-es="Escalada de Privilegios (Linux y Windows)">Escalada de Privilegios</span></div>
             <div class="skill-item"><span data-en="Active Directory Attacks" data-es="Ataques a Active Directory">Active Directory Attacks</span></div>
         </div>
         <div class="skill-category">
-            <h3>🌍 <span data-en="Languages" data-es="Idiomas">Languages</span></h3>
-            <div class="skill-item"><span data-en="Spanish (Native)" data-es="Español (Nativo)">Spanish (Native)</span></div>
-            <div class="skill-item"><span data-en="English B2" data-es="Inglés B2">English B2</span></div>
-            <div class="skill-item"><span data-en="French B2" data-es="Francés B2">French B2</span></div>
+            <h3>🌍 <span data-en="Languages" data-es="Idiomas">Idiomas</span></h3>
+            <div class="skill-item"><span data-en="Spanish (Native)" data-es="Español (Nativo)">Español (Nativo)</span></div>
+            <div class="skill-item"><span data-en="English B2" data-es="Inglés B2">Inglés B2</span></div>
+            <div class="skill-item"><span data-en="French B2" data-es="Francés B2">Francés B2</span></div>
         </div>
     </div>
 </section>
@@ -217,21 +227,32 @@
 <section id="projects">
     <h2 data-en="Projects" data-es="Proyectos">Projects</h2>
     <div class="projects-grid">
-        <!-- ARGOS -->
-        <div class="project-card featured" style="grid-column: 1 / -1;">
+        <!-- ARGOS - full width -->
+        <div class="project-card featured">
             <div class="project-header">
                 <h3>🛰️ ARGOS · SIEM/XDR AI Augmented + Human in the Loop</h3>
                 <span class="project-badge">🟢 TFM · Open Source</span>
             </div>
             <div class="project-body">
-                <p><span data-en='<strong style="color:var(--primary-color)">XDR built from scratch on Wazuh</strong> as Master\'s thesis (IMMUNE × Universidad Nebrija × Banco Santander). 5-layer architecture: multiclayer telemetry Windows/Linux (Sysmon v15, ScriptBlock EID4104, auditd, journald, WEL), Wazuh + OpenSearch SIEM, local Mistral 7B LLM triage via WireGuard, human supervision dashboard and 10 SOAR playbooks as systemd services. Level 13+ alerts with Telegram notification in &lt;1 s. <strong style="color:var(--primary-color)">178 custom artefacts</strong>: 24 Sigma rules, 115 Wazuh XML, 24 YARA, 25 Suricata (17 IDS + 8 IPS drop). 33 MITRE techniques across the full kill chain. <strong style="color:var(--primary-color)">58 documented corrections to Claude Sonnet 4.6</strong> and 25 prompt engineering iterations on Mistral 7B. Empirical thesis argument: unsupervised AI leaves critical exploitable gaps.' data-es='<strong style="color:var(--primary-color)">XDR construido desde cero sobre Wazuh</strong> como TFM del Máster (IMMUNE × Universidad Nebrija × Banco Santander). Arquitectura de 5 capas: telemetría multicapa Windows/Linux (Sysmon v15, ScriptBlock EID4104, auditd, journald, WEL), SIEM Wazuh + OpenSearch, triaje LLM local Mistral 7B vía WireGuard, dashboard de supervisión humana y 10 playbooks SOAR como servicios systemd. Alertas nivel 13+ con notificación Telegram en &lt;1 s. <strong style="color:var(--primary-color)">178 artefactos propios</strong>: 24 reglas Sigma, 115 XML Wazuh, 24 YARA, 25 Suricata (17 IDS + 8 IPS drop). 33 técnicas MITRE en kill chain completa. <strong style="color:var(--primary-color)">58 correcciones documentadas a Claude Sonnet 4.6</strong> y 25 iteraciones de prompt engineering sobre Mistral 7B. Argumento empírico de la tesis: la IA sin supervisión deja gaps críticos explotables.'>XDR construido desde cero sobre Wazuh como TFM del Máster. 178 artefactos propios, 33 técnicas MITRE, MTTD 3-20 s, MTTR &lt;3 s, 58 correcciones a Claude Sonnet 4.6.</span></p>
+                <ul class="argos-bullets" id="argos-bullets-es">
+                    <li><strong style="color:var(--primary-color)">Arquitectura:</strong> XDR de 5 capas sobre Wazuh construido desde cero como TFM del Máster (IMMUNE × Universidad Nebrija × Banco Santander). Telemetría multicapa Windows/Linux (Sysmon v15, ScriptBlock EID4104, auditd, journald, WEL), SIEM Wazuh + OpenSearch, triaje LLM local Mistral 7B vía WireGuard, dashboard de supervisión humana y 10 playbooks SOAR como servicios systemd. Alertas nivel 13+ con notificación Telegram en &lt;1 s.</li>
+                    <li><strong style="color:var(--primary-color)">Artefactos:</strong> 178 propios — 24 reglas Sigma, 115 XML Wazuh, 24 YARA, 25 Suricata (17 IDS + 8 IPS drop). 33 técnicas MITRE en kill chain completa (reconocimiento → exfiltración). Cada regla cubre un gap real de SigmaHQ o Wazuh nativo, validada empíricamente con ataques reales desde Kali.</li>
+                    <li><strong style="color:var(--primary-color)">Métricas:</strong> MTTD empírico 3-20 s · MTTR automático &lt;3 s · mejora 60x-400x vs respuesta manual L1. Triaje LLM: 9 campos MITRE+IOCs+kill chain en 30-90 s vs 3-15 min manual (2x-27x más rápido).</li>
+                    <li><strong style="color:var(--primary-color)">Human-in-the-Loop:</strong> 58 correcciones técnicas a Claude Sonnet 4.6 y 25 iteraciones de prompt engineering sobre Mistral 7B documentadas (alucinaciones MITRE en producción, evidencia forense en riesgo, gaps de cobertura). Argumento empírico de la tesis: la IA sin supervisión deja gaps críticos explotables.</li>
+                </ul>
+                <ul class="argos-bullets" id="argos-bullets-en" style="display:none">
+                    <li><strong style="color:var(--primary-color)">Architecture:</strong> 5-layer XDR built from scratch on Wazuh as Master's thesis (IMMUNE × Universidad Nebrija × Banco Santander). Multilayer telemetry Windows/Linux (Sysmon v15, ScriptBlock EID4104, auditd, journald, WEL), Wazuh + OpenSearch SIEM, local Mistral 7B LLM triage via WireGuard, human supervision dashboard and 10 SOAR playbooks as systemd services. Level 13+ alerts with Telegram notification in &lt;1 s.</li>
+                    <li><strong style="color:var(--primary-color)">Artefacts:</strong> 178 custom — 24 Sigma rules, 115 Wazuh XML, 24 YARA, 25 Suricata (17 IDS + 8 IPS drop). 33 MITRE techniques across the full kill chain (reconnaissance → exfiltration). Each rule covers a real gap in SigmaHQ or native Wazuh, empirically validated with real attacks from Kali.</li>
+                    <li><strong style="color:var(--primary-color)">Metrics:</strong> Empirical MTTD 3-20 s · Automatic MTTR &lt;3 s · 60x-400x improvement vs manual L1 response. LLM triage: 9 MITRE+IOCs+kill chain fields in 30-90 s vs 3-15 min manual (2x-27x faster).</li>
+                    <li><strong style="color:var(--primary-color)">Human-in-the-Loop:</strong> 58 technical corrections to Claude Sonnet 4.6 and 25 prompt engineering iterations on Mistral 7B documented (MITRE hallucinations in production, forensic evidence at risk, coverage gaps). Empirical thesis argument: unsupervised AI leaves critical exploitable gaps.</li>
+                </ul>
                 <div class="metrics-grid">
                     <div class="metric-box"><div class="metric-value">178</div><div class="metric-label" data-en="custom artefacts" data-es="artefactos propios">artefactos propios</div></div>
                     <div class="metric-box"><div class="metric-value">33</div><div class="metric-label" data-en="MITRE techniques" data-es="técnicas MITRE">técnicas MITRE</div></div>
                     <div class="metric-box"><div class="metric-value">3-20s</div><div class="metric-label">MTTD</div></div>
                     <div class="metric-box"><div class="metric-value">&lt;3s</div><div class="metric-label">MTTR SOAR</div></div>
                     <div class="metric-box"><div class="metric-value">58</div><div class="metric-label" data-en="AI corrections" data-es="correcciones IA">correcciones IA</div></div>
-                    <div class="metric-box"><div class="metric-value">60-400x</div><div class="metric-label" data-en="faster than manual" data-es="vs respuesta manual">vs manual L1</div></div>
+                    <div class="metric-box"><div class="metric-value">60-400x</div><div class="metric-label" data-en="vs manual L1" data-es="vs respuesta manual">vs manual L1</div></div>
                 </div>
                 <div class="project-tags">
                     <span class="project-tag">Wazuh 4.9.2</span><span class="project-tag">OpenSearch</span><span class="project-tag">Sigma</span><span class="project-tag">YARA</span><span class="project-tag">Suricata IDS/IPS</span><span class="project-tag">SOAR Python</span><span class="project-tag">Mistral 7B</span><span class="project-tag">Ollama</span><span class="project-tag">TheHive 5</span><span class="project-tag">WireGuard</span><span class="project-tag">Telegram</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">Human-in-the-Loop</span>
@@ -239,51 +260,49 @@
                 <div class="project-links"><a href="https://github.com/Miguel-R13/ARGOS" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-        <!-- PhishGuard -->
+        <!-- Row 1: PhishGuard + SOC Lab -->
         <div class="project-card">
             <div class="project-header">
-                <h3>🎣 PhishGuard · <span data-en="Phishing Email Analyzer" data-es="Analizador de Correos de Phishing">Phishing Email Analyzer</span></h3>
+                <h3>🎣 PhishGuard · <span data-en="Phishing Email Analyzer" data-es="Analizador de Correos de Phishing">Analizador de Phishing</span></h3>
                 <span class="project-badge">🟢 Open Source</span>
             </div>
             <div class="project-body">
-                <p><span data-en='Static and offline phishing triage tool for SOC analysts. Feed it a <strong>.eml</strong> and get a weighted verdict (<strong style="color:var(--primary-color)">CLEAN / SUSPICIOUS / MALICIOUS</strong>), per-indicator justification, MITRE ATT&amp;CK mapping and IOCs ready to pivot, all exportable to JSON for the ticket or SIEM ingestion. <strong style="color:var(--primary-color)">40 indicators · 157 tests · 0 mandatory dependencies · 100% offline</strong>.' data-es='Herramienta de triaje de phishing estática y 100% offline para analistas de SOC. Le pasas un <strong>.eml</strong> y devuelve un veredicto ponderado (<strong style="color:var(--primary-color)">CLEAN / SUSPICIOUS / MALICIOUS</strong>), justificación por indicador, mapeo a MITRE ATT&amp;CK y los IOCs listos para pivotar, todo exportable a JSON para el ticket o el SIEM. <strong style="color:var(--primary-color)">40 indicadores · 157 tests · 0 dependencias obligatorias · 100% offline</strong>.'>Herramienta open source de triaje estático de phishing. 40 indicadores MITRE ATT&CK · 157 tests · 0 dependencias · 100% offline.</span></p>
+                <p><span data-en='Static and offline phishing triage tool for SOC analysts. Feed it a <strong>.eml</strong> and get a weighted verdict (<strong style="color:var(--primary-color)">CLEAN / SUSPICIOUS / MALICIOUS</strong>), per-indicator justification, MITRE ATT&amp;CK mapping and IOCs ready to pivot — all exportable to JSON for the ticket or SIEM. <strong style="color:var(--primary-color)">40 indicators · 157 tests · 0 dependencies · 100% offline</strong>.' data-es='Herramienta de triaje de phishing estática y 100% offline para analistas de SOC. Le pasas un <strong>.eml</strong> y devuelve un veredicto ponderado (<strong style="color:var(--primary-color)">CLEAN / SUSPICIOUS / MALICIOUS</strong>), justificación por indicador, mapeo a MITRE ATT&amp;CK y los IOCs listos para pivotar — todo exportable a JSON para el ticket o el SIEM. <strong style="color:var(--primary-color)">40 indicadores · 157 tests · 0 dependencias · 100% offline</strong>.'>Herramienta open source de triaje de phishing. 40 indicadores MITRE ATT&CK · 157 tests · 0 dependencias · 100% offline.</span></p>
                 <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">SPF/DKIM/DMARC</span><span class="project-tag">Static Analysis</span><span class="project-tag">IOCs</span><span class="project-tag">SOAR</span><span class="project-tag">Offline</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/Phishguard2026" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-        <!-- SOC Lab Elastic -->
         <div class="project-card">
             <div class="project-header">
                 <h3>🛰️ SOC Lab: Elastic Security Threat Detection Platform</h3>
                 <span class="project-badge">🔵 Lab Project</span>
             </div>
             <div class="project-body">
-                <p><span data-en='Full enterprise SOC built on Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI integration with <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, ML anomaly detection and <strong style="color:var(--primary-color)">IRIS Case Management</strong>. All detections mapped to MITRE ATT&amp;CK. Complete incident lifecycle (NIST): detection, triage, investigation, containment and closure with measured MTTD and MTTR.' data-es='SOC empresarial completo sobre Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, integración CTI con <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, detección de anomalías con ML e <strong style="color:var(--primary-color)">IRIS Case Management</strong>. Detecciones mapeadas a MITRE ATT&amp;CK. Ciclo completo de gestión de incidentes (NIST): detección, triaje, investigación, contención y cierre con MTTD y MTTR medidos.'>SOC enterprise sobre Docker con Elastic SIEM, EDR, CTI y IRIS. Ciclo completo NIST con MTTD/MTTR medidos.</span></p>
+                <p><span data-en='Full enterprise SOC built on Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI with <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, ML anomaly detection and <strong style="color:var(--primary-color)">IRIS Case Management</strong>. All detections mapped to MITRE ATT&amp;CK. Complete incident lifecycle (NIST): detection, triage, investigation, containment and closure with measured MTTD and MTTR.' data-es='SOC empresarial completo sobre Docker: <strong style="color:var(--primary-color)">Elastic SIEM</strong>, Elastic Defend (EDR), Fleet Server + Fleet Agents, NSM, CTI con <strong style="color:var(--primary-color)">MISP + Abuse.ch</strong>, detección de anomalías con ML e <strong style="color:var(--primary-color)">IRIS Case Management</strong>. Detecciones mapeadas a MITRE ATT&amp;CK. Ciclo completo de gestión de incidentes (NIST): detección, triaje, investigación, contención y cierre con MTTD y MTTR medidos.'>SOC enterprise sobre Docker con Elastic SIEM, EDR, CTI y IRIS.</span></p>
                 <div class="project-tags"><span class="project-tag">Elastic SIEM</span><span class="project-tag">EDR</span><span class="project-tag">Fleet Server</span><span class="project-tag">MISP</span><span class="project-tag">Abuse.ch</span><span class="project-tag">ML Detection</span><span class="project-tag">IRIS</span><span class="project-tag">Docker</span><span class="project-tag">MITRE ATT&CK</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/SOC-Lab-Elastic-Security-Threat-Detection-Platform" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-        <!-- Sophos -->
+        <!-- Row 2: Sophos + Malware -->
         <div class="project-card">
             <div class="project-header">
-                <h3>🔐 Sophos XG NGFW · <span data-en="Secure Network Architecture" data-es="Arquitectura de Red Segura">Secure Network Architecture</span></h3>
+                <h3>🔐 Sophos XG NGFW · <span data-en="Secure Network Architecture" data-es="Arquitectura de Red Segura">Arquitectura de Red Segura</span></h3>
                 <span class="project-badge">🔵 Lab Project</span>
             </div>
             <div class="project-body">
-                <p><span data-en='Design and deployment of a <strong style="color:var(--primary-color)">Sophos XG NGFW</strong> on Hyper-V emulating a real corporate infrastructure. Multi-zone segmentation, Zero Trust policy, SSL/TLS inspection and Security Heartbeat. Controls validated via lateral movement simulations and vulnerability scanning.' data-es='Diseño y despliegue de un <strong style="color:var(--primary-color)">NGFW Sophos XG</strong> en Hyper-V emulando infraestructura corporativa real. Segmentación multizónica, política Zero Trust, inspección SSL/TLS y Security Heartbeat. Validación mediante simulaciones de movimiento lateral y escaneo de vulnerabilidades.'>Sophos XG NGFW en Hyper-V con segmentación multizona, Zero Trust y SSL/TLS inspection.</span></p>
+                <p><span data-en='Design and deployment of a <strong style="color:var(--primary-color)">Sophos XG NGFW</strong> on Hyper-V emulating a real corporate infrastructure. Multi-zone segmentation, Zero Trust policy, SSL/TLS inspection and Security Heartbeat. Controls validated via lateral movement simulations and vulnerability scanning.' data-es='Diseño y despliegue de un <strong style="color:var(--primary-color)">NGFW Sophos XG</strong> en Hyper-V emulando infraestructura corporativa real. Segmentación multizónica, política Zero Trust, inspección SSL/TLS y Security Heartbeat. Validación mediante simulaciones de movimiento lateral y escaneo de vulnerabilidades.'>NGFW Sophos XG en Hyper-V con segmentación multizona, Zero Trust y SSL/TLS inspection.</span></p>
                 <div class="project-tags"><span class="project-tag">Sophos XG</span><span class="project-tag">Hyper-V</span><span class="project-tag">Zero Trust</span><span class="project-tag">SSL Inspection</span><span class="project-tag">IPS</span><span class="project-tag">VPN</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/Sophos-NGFW-Lab" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
-        <!-- Malware -->
         <div class="project-card">
             <div class="project-header">
-                <h3>🛡️ <span data-en="Malware Analysis · Spear Phishing &amp; VBA Downloader" data-es="Análisis de Malware · Spear Phishing y VBA Downloader">Malware Analysis · Spear Phishing &amp; VBA Downloader</span></h3>
+                <h3>🛡️ <span data-en="Malware Analysis · Spear Phishing &amp; VBA Downloader" data-es="Análisis de Malware · Spear Phishing y VBA Downloader">Análisis de Malware · Spear Phishing &amp; VBA</span></h3>
                 <span class="project-badge">🔵 Lab Project</span>
             </div>
             <div class="project-body">
-                <p><span data-en='Two-stage infection chain: <strong style="color:var(--primary-color)">VBA macro</strong> downloader in a .docm + Python payload for exfiltration. Static and dynamic analysis, IOC extraction, C2 analysis and chain of custody. Isolated environment: REMnux, olevba, Ghidra, AES-256. Full MITRE ATT&amp;CK TTP mapping.' data-es='Cadena de infección en dos etapas: <strong style="color:var(--primary-color)">macro VBA</strong> downloader en .docm + payload Python para exfiltración. Análisis estático y dinámico, extracción de IOCs, análisis C2 y cadena de custodia. Entorno aislado: REMnux, olevba, Ghidra, AES-256. Mapeo completo de TTPs a MITRE ATT&amp;CK.'>Macro VBA + payload Python para exfiltración. Análisis estático y dinámico, IOCs, C2 y cadena de custodia.</span></p>
-                <div class="project-tags"><span class="project-tag">VBA Macro</span><span class="project-tag">REMnux</span><span class="project-tag">olevba</span><span class="project-tag">Ghidra</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">Static Analysis</span><span class="project-tag">AES-256</span></div>
+                <p><span data-en='Two-stage infection chain: <strong style="color:var(--primary-color)">VBA macro</strong> downloader in a .docm + Python payload for exfiltration. Static and dynamic analysis, IOC extraction, C2 analysis and chain of custody. Tools: REMnux, olevba, Ghidra, AES-256. Full MITRE ATT&amp;CK TTP mapping.' data-es='Cadena de infección en dos etapas: <strong style="color:var(--primary-color)">macro VBA</strong> en .docm + payload Python para exfiltración. Análisis estático y dinámico, extracción de IOCs, análisis C2 y cadena de custodia. Herramientas: REMnux, olevba, Ghidra, AES-256. Mapeo completo de TTPs a MITRE ATT&amp;CK.'>Macro VBA + payload Python. Análisis estático y dinámico, IOCs, C2, cadena de custodia.</span></p>
+                <div class="project-tags"><span class="project-tag">VBA Macro</span><span class="project-tag">REMnux</span><span class="project-tag">olevba</span><span class="project-tag">Ghidra</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">AES-256</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">GitHub →</a></div>
             </div>
         </div>
@@ -300,7 +319,7 @@
         <div class="project-card">
             <div class="project-header"><h3>🔍 Lab 01 · DFIR <span data-en="Forensics" data-es="Forense">Forense</span></h3><span class="project-badge">🔵 Write-Up</span></div>
             <div class="project-body">
-                <p><span data-en='Forensic analysis of a pendrive in a simulated drug trafficking case. Recovery of deleted files, file type spoofing via magic bytes, metadata analysis and full chain of custody reconstruction.' data-es='Análisis forense de un pendrive en un caso simulado de narcotráfico. Recuperación de archivos eliminados, identificación de ofuscación de tipos de archivo mediante magic bytes, análisis de metadatos y reconstrucción de la cadena de evidencias.'>Análisis forense de pendrive, file type spoofing, cadena de custodia.</span></p>
+                <p><span data-en="Forensic analysis of a pendrive in a simulated drug trafficking case. Recovery of deleted files, file type spoofing via magic bytes, metadata analysis and full chain of custody reconstruction." data-es="Análisis forense de un pendrive en un caso simulado de narcotráfico. Recuperación de archivos eliminados, identificación de ofuscación mediante magic bytes, análisis de metadatos y reconstrucción de la cadena de custodia.">Análisis forense de pendrive, file type spoofing, cadena de custodia.</span></p>
                 <div class="project-tags"><span class="project-tag">FTK Imager</span><span class="project-tag">Kali Purple</span><span class="project-tag">DFIR</span><span class="project-tag">Magic Bytes</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps/tree/master/01-DFIR-Forense-Pendrive-Narcotrafico" target="_blank" class="btn">GitHub →</a></div>
             </div>
@@ -308,7 +327,7 @@
         <div class="project-card">
             <div class="project-header"><h3>🦠 Lab 02 · <span data-en="Malware Analysis" data-es="Análisis de Malware">Análisis de Malware</span></h3><span class="project-badge">🔵 Write-Up</span></div>
             <div class="project-body">
-                <p><span data-en='Static analysis of a Spear Phishing campaign with a malicious VBA macro. Code extraction with olevba, downloader behaviour identification and TTP mapping to MITRE ATT&amp;CK.' data-es='Análisis estático de una campaña de Spear Phishing con macro VBA maliciosa. Extracción del código con olevba, identificación del downloader y mapeo de TTPs a MITRE ATT&amp;CK.'>Análisis estático de macro VBA maliciosa, olevba, mapeo MITRE ATT&CK.</span></p>
+                <p><span data-en="Static analysis of a Spear Phishing campaign with a malicious VBA macro. Code extraction with olevba, downloader behaviour identification and TTP mapping to MITRE ATT&CK." data-es="Análisis estático de una campaña de Spear Phishing con macro VBA maliciosa. Extracción del código con olevba, identificación del downloader y mapeo de TTPs a MITRE ATT&CK.">Análisis estático de macro VBA maliciosa, olevba, mapeo MITRE ATT&CK.</span></p>
                 <div class="project-tags"><span class="project-tag">REMnux</span><span class="project-tag">olevba</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">Static Analysis</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Lab-Analisis-de-Malware-Spear-Phishing-VBA-Downloader" target="_blank" class="btn">GitHub →</a></div>
             </div>
@@ -316,7 +335,7 @@
         <div class="project-card">
             <div class="project-header"><h3>🚨 Lab 03 · Incident Response</h3><span class="project-badge">🔵 Write-Up</span></div>
             <div class="project-body">
-                <p><span data-en='Simulated real incident response with over 5,000 active alerts on shift. Alert triage, event correlation in Elastic, reverse shell detection and full kill chain reconstruction. Case documented in IRIS and mapped to MITRE ATT&amp;CK.' data-es='Respuesta a incidente real simulado con más de 5.000 alertas activas en turno. Triaje de alertas, correlación en Elastic, detección de reverse shell y reconstrucción del kill chain. Caso documentado en IRIS y mapeado a MITRE ATT&amp;CK.'>+5.000 alertas, reverse shell, kill chain completo, caso IRIS.</span></p>
+                <p><span data-en="Simulated real incident response with over 5,000 active alerts on shift. Alert triage, event correlation in Elastic, reverse shell detection and full kill chain reconstruction. Case documented in IRIS and mapped to MITRE ATT&CK." data-es="Respuesta a incidente real simulado con más de 5.000 alertas activas en turno. Triaje de alertas, correlación en Elastic, detección de reverse shell y reconstrucción del kill chain. Caso documentado en IRIS y mapeado a MITRE ATT&CK.">+5.000 alertas, reverse shell, kill chain completo, caso IRIS.</span></p>
                 <div class="project-tags"><span class="project-tag">Elastic Security</span><span class="project-tag">IRIS</span><span class="project-tag">MITRE ATT&CK</span><span class="project-tag">Kill Chain</span></div>
                 <div class="project-links"><a href="https://github.com/Miguel-R13/BlueTeam-Labs-WriteUps/tree/master/03-IR-Respuesta-Incidentes-Elastic" target="_blank" class="btn">GitHub →</a></div>
             </div>
@@ -329,18 +348,18 @@
     <div class="timeline">
         <div class="timeline-item">
             <h3>Junior Solution Engineer | Smartsheet Consultant &amp; Dev</h3>
-            <p class="timeline-date">Uniendo Nodos · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
+            <p class="timeline-date">Uniendo Nodos · <span data-en="Full-time" data-es="Jornada completa">Jornada completa</span></p>
             <p class="timeline-date">📅 <span data-en="September 2024 – June 2025" data-es="Septiembre 2024 – Junio 2025">Septiembre 2024 – Junio 2025</span></p>
             <p class="timeline-date">📍 Madrid</p>
             <p><span data-en="Design and automation of technical architectures and workflows for enterprises. Creation of dashboards for decision-making in business environments." data-es="Diseño y automatización de arquitecturas técnicas y tareas para empresas. Creación de dashboards para toma de decisiones en entornos empresariales.">Diseño y automatización de arquitecturas técnicas y tareas para empresas. Creación de dashboards para toma de decisiones en entornos empresariales.</span></p>
-            <div class="timeline-skills"><span class="tag">Smartsheet</span><span class="tag" data-en="Process automation" data-es="Automatización">Automatización</span><span class="tag">APIs</span><span class="tag">Dashboards</span></div>
+            <div class="timeline-skills"><span class="tag">Smartsheet</span><span class="tag">APIs</span><span class="tag">Dashboards</span><span class="tag" data-en="Process automation" data-es="Automatización">Automatización</span></div>
         </div>
         <div class="timeline-item">
             <h3>Co-Manager · <span data-en="Training &amp; Development · Recruitment Coordinator" data-es="Formación y Desarrollo · Coordinador de Selección">Formación y Desarrollo · Coordinador de Selección</span></h3>
-            <p class="timeline-date">DO &amp; CO AG · <span data-en="Full-time" data-es="Jornada completa">Full-time</span></p>
+            <p class="timeline-date">DO &amp; CO AG · <span data-en="Full-time" data-es="Jornada completa">Jornada completa</span></p>
             <p class="timeline-date">📅 <span data-en="March 2021 – August 2023" data-es="Marzo 2021 – Agosto 2023">Marzo 2021 – Agosto 2023</span></p>
             <p class="timeline-date">📍 Madrid / Vienna / Paris / Qatar / Silverstone / Monza</p>
-            <p><span data-en="Team management and decision-making under critical time pressure at global-scale events (F1, FIFA Qatar 2022, UEFA Euro 2021). Crisis coordination in multicultural and international environments." data-es="Gestión de equipos y toma de decisiones bajo presión crítica de tiempo en eventos de escala global (F1, FIFA Qatar 2022, UEFA Euro 2021). Coordinación de crisis en entornos multiculturales e internacionales.">Gestión de equipos en eventos internacionales de alto nivel. F1, FIFA Qatar 2022, UEFA Euro 2021.</span></p>
+            <p><span data-en="Team management and decision-making under critical time pressure at global-scale events (F1, FIFA Qatar 2022, UEFA Euro 2021). Crisis coordination in multicultural and international environments." data-es="Gestión de equipos y toma de decisiones bajo presión crítica de tiempo en eventos de escala global (F1, FIFA Qatar 2022, UEFA Euro 2021). Coordinación de crisis en entornos multiculturales e internacionales.">Gestión de equipos en eventos internacionales de alto nivel.</span></p>
             <div class="timeline-skills"><span class="tag" data-en="Team management" data-es="Gestión de equipos">Gestión de equipos</span><span class="tag" data-en="Crisis management" data-es="Gestión de crisis">Gestión de crisis</span><span class="tag" data-en="Leadership" data-es="Liderazgo">Liderazgo</span></div>
         </div>
     </div>
@@ -402,6 +421,8 @@ function applyLang() {
     });
     document.getElementById('about-card-en').style.display = currentLang === 'en' ? '' : 'none';
     document.getElementById('about-card-es').style.display = currentLang === 'es' ? '' : 'none';
+    document.getElementById('argos-bullets-en').style.display = currentLang === 'en' ? '' : 'none';
+    document.getElementById('argos-bullets-es').style.display = currentLang === 'es' ? '' : 'none';
     document.querySelectorAll('.hero-role,.hero-degree,.hero-thm').forEach(el => {
         if (el.dataset.en && el.dataset.es) el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.es;
     });
@@ -423,7 +444,7 @@ const canvas = document.getElementById('network-canvas');
 const ctx = canvas.getContext('2d');
 function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
 resize(); window.addEventListener('resize',resize);
-const labels=['SOC','SIEM','MITRE','IOC','DNS','TLS','EDR','OSINT','CTI','DFIR','XDR','ATT&CK','ARGOS','YARA','Sigma','SOAR','Wazuh'];
+const labels=['SOC','SIEM','MITRE','IOC','DNS','TLS','EDR','OSINT','CTI','DFIR','XDR','ATT&CK','ARGOS','YARA','Sigma','SOAR','Wazuh','TheHive','WireGuard'];
 const nodes=[];
 for(let i=0;i<45;i++){nodes.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.08,vy:(Math.random()-0.5)*0.08,label:Math.random()>0.9?labels[Math.floor(Math.random()*labels.length)]:''});}
 function animate(){
